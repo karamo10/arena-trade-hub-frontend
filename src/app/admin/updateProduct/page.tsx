@@ -3,13 +3,12 @@ import UpdateProductCard from "@/ui/productCard/updateProductCard";
 import ProductSearchInput from "@/ui/inputs/searchInput";
 
 type Props = {
-    searchParams?: {
-        q?: string;
-    };
+    searchParams?: Promise<{ q?: string; }>
 };
 
-export default async function UpdatePage({searchParams}: Props) {
-    const products = await getProducts(searchParams?.q); // pass .q as an argument
+export default async function UpdatePage(props: Props) {
+    const searchParams = await props.searchParams
+    const products = await getProducts(searchParams?.q); // pass q as an argument
     
     return (
         <section className="min-h-screen">
