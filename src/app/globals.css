@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+h1 {
+    color: #150e56;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+h2,
+h3,
+h4,
+h5 {
+    color: #06022c;
+}
+
+p {
+    line-height: 1.7;
+    color: #020109;
+}
+
+.nav-text {
+    color: #06022c;
+}
+
+.icon {
+    color: #06022c;
+}
+
+
+.footer-text,
+.about,
+.text {
+    color: #ffffff;
+}
+
+.error {
+    color: #fb2c36;
+}
+
+.btn-bg {
+    background:#150e56;
+    color: #ffffff;
+}
+
+/* .custom-toast {
+    color: #e41616;
+    background: #a1a1a1;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+} */
+
+input[type="text"]:disabled,
+input[type="email"]:disabled,
+input[type="password"]:disabled{
+    @apply bg-gray-300 cursor-not-allowed
+}
+
+button[type="submit"]:disabled, submit:disabled {
+    @apply bg-blue-600 cursor-not-allowed
+}
+
+@media (max-width: 769px) {
+    h1 {
+        font-size: 25px;
+    }
+
+    .header-link {
+        display: none;
+    }
+}
