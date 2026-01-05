@@ -10,28 +10,30 @@ h2,
 h3,
 h4,
 h5 {
-    color: #06022c;
+    color: #000E24;
 }
 
-p {
+.product-card-p{
+    color: #000E24;
     line-height: 1.7;
-    color: #020109;
 }
 
-.nav-text {
-    color: #06022c;
-}
-
-.icon {
-    color: #06022c;
+.card,
+.login {
+    color: #000E24;
 }
 
 
-.footer-text,
+/* .icon {
+    color: red;
+} */
+
+
+/* .footer-text,
 .about,
 .text {
     color: #ffffff;
-}
+} */
 
 .error {
     color: #fb2c36;
@@ -39,7 +41,7 @@ p {
 
 .btn-bg {
     background:#150e56;
-    color: #ffffff;
+    color: green;
 }
 
 /* .custom-toast {
@@ -51,12 +53,13 @@ p {
 input[type="text"]:disabled,
 input[type="email"]:disabled,
 input[type="password"]:disabled{
-    @apply bg-gray-300 cursor-not-allowed
+    @apply bg-slate-100 cursor-not-allowed
 }
 
 button[type="submit"]:disabled, submit:disabled {
-    @apply bg-blue-600 cursor-not-allowed
+    @apply opacity-90 cursor-not-allowed
 }
+
 
 @media (max-width: 769px) {
     h1 {
@@ -66,4 +69,16 @@ button[type="submit"]:disabled, submit:disabled {
     .header-link {
         display: none;
     }
+}
+
+@media (max-width: 250px) {
+    .form {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+
+.foot {
+    background: linear-gradient(to left, #000E24, #002966);
 }

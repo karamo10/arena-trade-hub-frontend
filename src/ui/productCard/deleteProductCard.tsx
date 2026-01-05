@@ -1,6 +1,6 @@
 'use client';
 
-import { Product } from '@/types/product-data-types';
+import { Product } from '@/types/product-data-type';
 import { TrashIcon } from '@heroicons/react/16/solid';
 import Image from 'next/image';
 

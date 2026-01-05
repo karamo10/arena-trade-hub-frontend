@@ -6,7 +6,7 @@
 
 import { useEffect, useState } from 'react';
 import { getUsers, updateUserRole } from '@/services/api';
-import { User } from '@/types/user-types';
+import { User } from '@/types/user-type';
 import { toast } from 'react-toastify';
 import handleAuthError from '@/lib/handleAuthError';
 

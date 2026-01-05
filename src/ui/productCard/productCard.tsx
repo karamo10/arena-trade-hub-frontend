@@ -1,4 +1,4 @@
-import { Product } from '@/types/product-data-types';
+import { Product } from '@/types/product-data-type';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -6,7 +6,7 @@ export default function ProductCard({ product }: { product: Product }) {
   return (
     <Link
       href={`/products/${product.slug}`}
-      className="flex items-center flex-col md:flex-row py-1 bg-white shadow-sm rounded relative"
+      className="flex items-center flex-col md:flex-row py-1 bg-white rounded relative"
     >
       <div className="relative w-[100px] h-[100px] md:w-[120px] md:h-[120px] rounded">
         <Image
@@ -18,10 +18,10 @@ export default function ProductCard({ product }: { product: Product }) {
         />
       </div>
       <div className="text-center px-2">
-        <p className="text-xs md:text-sm font-light capitalize">
+        <p className="text-xs md:text-sm font-light capitalize product-card-p">
           {product.name}
         </p>
-        <span className="text-xs md:text-sm md:font-semibold mt-1">
+        <span className="text-xs md:text-sm md:font-semibold mt-1 product-card-p">
           GMD{product.price}
         </span>
       </div>

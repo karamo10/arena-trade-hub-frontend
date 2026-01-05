@@ -8,19 +8,20 @@ export default function PasswordInput({ name, value, onchange }: { name: string,
     // const [userLogging, setUserLogging] = useState(false);
     
     return (
-        <div className="relative mb-4">
+        <div className="relative">
             <input
                 type={showPassword ? "text" : "password"}
                 name={name}
                 value={value}
                 onChange={onchange}
                 placeholder={`${name}`}
-                className="p-2 w-full mb-0 rounded bg-white outline outline-blue-950/95"
+                className="peer w-full border border-slate-400 bg-white/50 focus:border-[#000428] in-focus:ring-[#000428] rounded py-2 px-3 outline-none placeholder:text-sm placeholder:text-slate-800"
+                required
             />
             <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-2 inset-y-0 cursor-pointer"
+                className="absolute right-3 inset-y-0 cursor-pointer peer-focus:text-[#000428]"
             >
                 {showPassword ? (<EyeSlashIcon className="w-6 h-6" />) : (<EyeIcon className="w-6 h-6" />)}
                 <span className="sr-only">

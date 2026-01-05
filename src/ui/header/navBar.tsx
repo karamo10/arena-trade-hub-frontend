@@ -14,7 +14,7 @@ export default function NavBar() {
   const [openMenu, setOpenMenu] = useState(false);
 
   return (
-    <nav className="bg-white ">
+    <nav className="bg-white">
       <div className="flex items-center justify-between px-5 md:px-[100px] h-[70px]">
         <Link href={'/'}>
           {' '}
@@ -30,15 +30,15 @@ export default function NavBar() {
           <NavLinks />
         </div> */}
         <div className="hidden md:block">
-          <div className="flex justify-center items-center gap-8">
-            <Link href={'/login'} className="font-medium">
+          <div className="flex justify-center items-center gap-4">
+            <Link href={'/login'} className="text-lg font-semibold login">
               Login
             </Link>
-            <Link href={'/register'} className="font-medium">
+            {/* <Link href={'/register'} className="font-medium">
               Register
-            </Link>
+            </Link> */}
             <Link href={'/cart'}>
-              <ShoppingBagIcon className="w-8 font-bold" />
+              <ShoppingBagIcon className="w-8 h-8 font-semibold card" />
             </Link>
           </div>
         </div>

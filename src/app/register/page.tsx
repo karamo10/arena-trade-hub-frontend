@@ -4,12 +4,16 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { register } from '@/services/api';
 import PasswordInput from '@/ui/inputs/passwordInput';
+import Link from 'next/link';
+import { toast } from 'react-toastify';
+import { AtSymbolIcon, UserCircleIcon, KeyIcon, ArrowLongRightIcon, ExclamationCircleIcon} from '@heroicons/react/16/solid';
+
 
 export default function RegisterPage() {
   const router = useRouter();
   const [form, setForm] = useState({ name: '', email: '', password: '' });
-  const [error, setError] = useState('');
   const [creatingUser, setCreatingUser] = useState(false);
+  const [erroMessage, setErroMessage] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -23,57 +27,86 @@ export default function RegisterPage() {
       const response = await register(form.name, form.email, form.password);
       // console.log('Registered', response);
       router.push('/login');
-    } catch (err: any) {
+    } catch (err) {
+      setErroMessage(true);
+      toast.error('Registration Failed');
       console.error(err);
-      setError('Registration Failed');
     }
     setCreatingUser(false);
   };
 
   return (
-    <div className="p-6 items-center justify-center">
-      <h2 className="text-xl font-semibold text-center mb-[1.5rem]">
-        Admin Register
-      </h2>
-      <form
-        onSubmit={handleSubmit}
-        className="max-w-80 mx-auto py-4 px-4 bg-blue-950/95 rounded"
-      >
-        <h6 className="mb-4 text-lg text-white font-medium">Admin Login</h6>
-        <input
-          type="text"
-          name="name"
-          placeholder="Username"
-          value={form.name}
-          onChange={handleChange}
-          disabled={creatingUser}
-          required
-          className="p-2 w-full mb-4 rounded bg-white outline outline-blue-950/95"
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="you@gmail.com"
-          value={form.email}
-          onChange={handleChange}
-          disabled={creatingUser}
-          required
-          className="p-2 w-full mb-4 rounded bg-white outline outline-blue-950/95"
-        />
-        <PasswordInput
-          name="password"
-          value={form.password}
-          onchange={handleChange}
-        />
-        <button
-          type="submit"
-          disabled={creatingUser}
-          className="bg-blue-700 w-full text-white px-4 py-2 font-medium rounded hover:bg-blue-800 cursor-pointer transition-all"
+    <div className="min-h-screen flex justify-center">
+      <div className="w-full px-2 py-10">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-6 w-[100%] max-w-[500px] max-h-[400px] mx-auto py-8 px-7 bg-white rounded-lg border border-slate-300 form"
         >
-          Register
-        </button>
-        {error && <p className="error text-sm mt-2">{error}</p>}
-      </form>
+          <h2 className="text-center text-lg font-medium">Create an account</h2>
+
+          <div className="relative">
+            <input
+              type="text"
+              name="name"
+              placeholder="Username"
+              value={form.name}
+              onChange={handleChange}
+              disabled={creatingUser}
+              required
+              className="peer w-full border border-slate-400 bg-white/50 focus:border-[#000428] focus:ring-[#000428] rounded px-11 py-2 outline-none placeholder:text-sm placeholder:text-slate-800"
+            />
+            <UserCircleIcon className="absolute w-5 h-5 top-3 left-3.5 peer-focus:text-[#000428]" />
+          </div>
+
+          <div className="relative">
+            <input
+            type="email"
+            name="email"
+            placeholder="Enter email address"
+            value={form.email}
+            onChange={handleChange}
+            disabled={creatingUser}
+            required
+            className="peer w-full border border-slate-400 bg-white/50 focus:border-[#000428] focus:ring-[#000428] rounded px-11 py-2 outline-none placeholder:text-sm placeholder:text-slate-800"
+            />
+            <AtSymbolIcon className="absolute w-5 h-5 top-3 left-3.5 peer-focus:text-[#000428]" />
+          </div>
+          
+          <div className="relative">
+            <PasswordInput
+            name="password"
+            value={form.password}
+              onchange={handleChange}
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={creatingUser}
+            className="flex items-center justify-between text-white font-semibold px-3 py-2 bg-gradient-to-l from-[#000428] to-[#004e92] hover:opacity-80 rounded cursor-pointer"
+          >
+            Register
+            <ArrowLongRightIcon className="w-5 h-5" />
+          </button>
+
+          <div className="flex items-center gap-1">
+            {erroMessage && (
+            <>
+              <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
+              <p className="text-sm text-red-500">{"Something went wrong!"}</p>
+            </>
+          )}
+          </div>
+        </form>
+        <div className="flex justify-center mt-8">
+          <p className="text-[1rem] font-light">
+            Already have and account?{' '}
+            <Link href={'/login'} className="font-medium underline text-[#000428] hover:opacity-80">
+              Login here
+            </Link>
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

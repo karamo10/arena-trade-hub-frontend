@@ -5,8 +5,8 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <section className="px-5 md:px-[100px] bg-blue-950 py-[1rem]">
-     <div className="flex items-center justify-center gap-6">
+    <section className="px-5 md:px-[100px] foot py-[1rem]">
+     {/* <div className="flex items-center justify-center gap-6">
         <Link href={'/'}>
           <FaFacebookSquare className="w-5 h-5 text-white hover:text-white/85 transition-all" />
         </Link>
@@ -16,8 +16,8 @@ export default function Footer() {
         <Link href={'/'}>
           <FiInstagram className="w-5 h-5 text-white hover:text-white/85 transition-all" />
         </Link>
-      </div>
-       <p className="footer-text text-xs sm:text-sm font-medium text-center text-white/90 mt-3">© 2025 Arena Trade Hub Logistics & Supplies
+      </div> */}
+       <p className="footer-text text-[10px] sm:text-sm font-medium text-center text-white mt-3">&copy; 2026 Arena Trade Hub Logistics & Supplies
       </p>
     </section>
   );

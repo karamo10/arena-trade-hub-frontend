@@ -55,9 +55,9 @@ export default function AddProductForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-96 mx-auto py-4 px-4 bg-white rounded shadow-lg"
+      className="flex flex-col gap-5 w-[100%] max-w-[500px] max-h-[450px] mx-auto py-7 px-6 bg-white shadow-lg rounded-lg border border-slate-300 form"
     >
-      <h2 className="text-xl font-semibold text-center mb-[1.5rem]">
+      <h2 className="text-lg font-medium text-center">
         Add Product
       </h2>
 
@@ -65,7 +65,7 @@ export default function AddProductForm() {
         type="text"
         placeholder="Product name"
         value={name}
-        className="p-2 w-full mb-4 rounded bg-white outline outline-blue-950/95"
+        className="w-full border border-slate-300 focus:border-indigo-500 in-focus:ring-indigo-500 rounded-lg p-2"
         onChange={(e) => setName(e.target.value)}
         required
       />
@@ -74,7 +74,7 @@ export default function AddProductForm() {
         type="number"
         placeholder="Price"
         value={price}
-        className="p-2 w-full mb-4 rounded bg-white outline outline-blue-950/95"
+        className="w-full border border-slate-300 focus:border-indigo-500 in-focus:ring-indigo-500 rounded-lg p-2"
         onChange={(e) => setPrice(e.target.value)}
         required
       />
@@ -82,7 +82,7 @@ export default function AddProductForm() {
       <select
         value={categories}
         onChange={(e) => setCategories(e.target.value)}
-        className="p-2 w-full mb-4 rounded bg-white outline outline-blue-950/95"
+        className="w-full border border-slate-300 focus:border-indigo-500 in-focus:ring-indigo-500 rounded-lg p-2"
       >
         <option value="">Select a Category</option>
         <option value="oil">oil</option>
@@ -94,7 +94,7 @@ export default function AddProductForm() {
       <textarea
         placeholder="Description"
         value={description}
-        className="p-2 w-full mb-4 rounded bg-white outline outline-blue-950/95"
+        className="w-full border border-slate-300 focus:border-indigo-500 in-focus:ring-indigo-500 rounded-lg p-2"
         onChange={(e) => setDescription(e.target.value)}
       />
 
@@ -114,7 +114,7 @@ export default function AddProductForm() {
           className="hidden"
           onChange={(e) => setImage(e.target.files?.[0] || null)}
         />
-        <div className="flex items-center gap-2 text-[14px] border-1 border-neutral-300 py-1 px-2 rounded-lg">
+        <div className="w-full border border-slate-300 focus:border-indigo-500 in-focus:ring-indigo-500 rounded-lg p-2">
           <label htmlFor="imageUpload">
             <Image
               alt="icon"

@@ -5,11 +5,13 @@ import React, { useState } from 'react';
 import { login } from '@/services/api';
 import Link from 'next/link';
 import PasswordInput from '@/ui/inputs/passwordInput';
+import {toast} from 'react-toastify'
+import { AtSymbolIcon } from '@heroicons/react/16/solid';
+import { ArrowLongRightIcon } from '@heroicons/react/24/outline';
 
 export default function LoginPage() {
   const router = useRouter();
   const [form, setForm] = useState({ email: '', password: '' });
-  const [error, setError] = useState('');
   const [userLogging, setUserLogging] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,34 +33,37 @@ export default function LoginPage() {
       } else {
         router.push('/profile');
       }
-      // router.push('/')
-    } catch (err: any) {
+    } catch (err) {
+      toast.error("Something went wrong.")
       console.error(err);
-      setError('Invalid Credentials');
     }
     // console.log(form);
     setUserLogging(false);
   };
 
   return (
-    <section className="p-6 items-center justify-center">
-      <h2 className="text-xl font-semibold text-center mb-[1.5rem]">
-        Admin Login
-      </h2>
-      <form
+    <section className="min-h-screen flex justify-center">
+      <div className="w-full p-2 py-10">
+         <form
         onSubmit={handleSubmit}
-        className="max-w-80 mx-auto py-4 px-4 bg-blue-950/95 rounded"
+        className="flex flex-col gap-6 w-[100%] max-w-[500px] max-h-[325px] mx-auto py-8 px-7 bg-white rounded-lg border border-slate-300 form"
       >
-        <input
+          <h2 className="text-center text-lg font-medium">Login to continue</h2>
+          
+          <div className="relative">
+            <input
           type="email"
           name="email"
-          placeholder="you@gmail.com"
+          placeholder="Enter email address"
           value={form.email}
           onChange={handleChange}
           required
           disabled={userLogging}
-          className="p-2 w-full mb-4 rounded bg-white outline outline-blue-950/95"
-        />
+          className="peer w-full border border-slate-400 bg-white/50 focus:border-indigo-900 in-focus:ring-indigo-900 rounded px-11 py-2 outline-none placeholder:text-sm placeholder:text-slate-800"
+            />
+            <AtSymbolIcon className="absolute w-5 h-5 top-3 left-3.5 peer-focus:text-indigo-900" />
+        </div>
+          
         <PasswordInput
           name="password"
           value={form.password}
@@ -68,20 +73,20 @@ export default function LoginPage() {
         <button
           type="submit"
           disabled={userLogging}
-          className="bg-blue-700 w-full text-white px-4 py-2 font-medium rounded hover:bg-blue-800 cursor-pointer transition-all"
+          className="inline-flex items-center justify-between text-white py-2 px-3 font-medium bg-gradient-to-l from-[#000428] to-[#004e92] w-full hover:opacity-80 rounded cursor-pointer"
         >
-          Login
+            Login
+            <ArrowLongRightIcon className="w-5 h-5" />
         </button>
-        {error && <p className="error text-sm mt-2">{error}</p>}
       </form>
-      <div className="flex items-center justify-center mt-4">
-        <p className="text-[1rem]">
-          don't have an account?{' '}
-          <Link href={'/register'} className="text-orange-500">
-            Register{' '}
+      <div className="flex justify-center mt-8">
+        <p className="text-[1rem] font-light">
+          Don't have an account?{' '}
+          <Link href={'/register'} className="font-medium underline text-[#000428] hover:opacity-80">
+            Create and account
           </Link>
-          now
         </p>
+      </div>
       </div>
     </section>
   );
