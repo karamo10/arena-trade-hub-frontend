@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { register } from '@/services/api';
-import PasswordInput from '@/ui/inputs/passwordInput';
+import PasswordInput from '@/ui/inputs/PasswordInput';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 import { AtSymbolIcon, UserCircleIcon, KeyIcon, ArrowLongRightIcon, ExclamationCircleIcon} from '@heroicons/react/16/solid';

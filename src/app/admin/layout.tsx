@@ -1,7 +1,7 @@
 'use client';
 
 import useAuth from '@/hooks/useAuth';
-import AdminSideBar from '@/ui/adminComponent/sideBar';
+import AdminSideBar from '@/ui/admin/AdminSideBar';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { PencilSquareIcon, PlusCircleIcon, TrashIcon, UserCircleIcon } from '@heroicons/react/16/solid';
@@ -27,7 +27,7 @@ export default function AdminLayout({
 
   return (
     <>
-      <div className="flex bg-neutral-100/50">
+      <section className="flex bg-neutral-100/50">
         <ToastContainer position="top-center" autoClose={5000}/>
         <AdminSideBar />
         <div className="flex flex-col w-full">
@@ -49,21 +49,21 @@ export default function AdminLayout({
            <p className="font-light">Users</p>
         </Link>
              <Link
-          href={'/admin/addProduct'}
+          href={'/admin/add-product'}
           className="flex items-center gap-2 py-4 px-6 bg-white font-normal rounded cursor-pointer shadow-lg"
         >
           <PlusCircleIcon className="w-6 h-6" />
            <p className="font-light">Add</p>
         </Link>
         <Link
-          href={'/admin/updateProduct'}
+          href={'/admin/update-product'}
           className="flex items-center gap-2 py-4 px-6 bg-white font-normal rounded cursor-pointer shadow-lg"
         >
               <PencilSquareIcon className="w-6 h-6" />
              <p className="font-light">Update</p>
         </Link>
         <Link
-          href={'/admin/deleteProduct'}
+          href={'/admin/delete-product'}
           className="flex items-center gap-2 py-4 px-6 bg-white font-normal rounded cursor-pointer shadow-lg"
         >
           <TrashIcon className="w-6 h-6" />
@@ -72,7 +72,7 @@ export default function AdminLayout({
           </div>
           {children}
         </div>
-      </div>
+      </section>
     </>
   );
 }

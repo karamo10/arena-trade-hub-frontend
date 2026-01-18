@@ -1,13 +1,13 @@
-import Hero from "@/ui/hero/hero";
+import Hero from "@/ui/hero/Hero";
 // 
-import RiceCategoreis from "@/ui/categoryRices/rice";
-import OilsCategoreis from "@/ui/categoryOils/oils";
-import GeneralProductsCategoreis from "@/ui/categoryGeneralProduct/generalProducts";
-import MayonnaisesCategories from "@/ui/categoryMayyounaise/mayonnaises";
+import RiceCategoreis from "@/ui/categoryRices/Rice";
+import OilsCategoreis from "@/ui/categoryOils/Oils";
+import GeneralProductsCategoreis from "@/ui/categoryGeneralProduct/GeneralProducts";
+import MayonnaisesCategories from "@/ui/categoryMayyounaise/Mayonnaises";
 // 
 import { Suspense } from "react";
-import { RiceSkeleton } from "@/ui/skeleton/skeleton";
-import { MayyounaiseSkeleton } from "@/ui/skeleton/skeleton";
+import { RiceSkeleton } from "@/ui/skeleton/Skeleton";
+import { MayyounaiseSkeleton } from "@/ui/skeleton/Skeleton";
 
 
 export default async function Home() {

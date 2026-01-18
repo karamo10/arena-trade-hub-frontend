@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { login } from '@/services/api';
 import Link from 'next/link';
-import PasswordInput from '@/ui/inputs/passwordInput';
+import PasswordInput from '@/ui/inputs/PasswordInput';
 import {toast} from 'react-toastify'
 import { AtSymbolIcon } from '@heroicons/react/16/solid';
 import { ArrowLongRightIcon } from '@heroicons/react/24/outline';
@@ -31,7 +31,7 @@ export default function LoginPage() {
       if (res.user.role === 'admin') {
         router.push('/admin');
       } else {
-        router.push('/profile');
+        router.push('/user');
       }
     } catch (err) {
       toast.error("Something went wrong.")

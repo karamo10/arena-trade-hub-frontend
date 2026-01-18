@@ -1,7 +1,7 @@
 import { Roboto } from "next/font/google";
 import "./globals.css";
-import Navigation from "@/ui/header/header";
-import Footer from "@/ui/footer/footer";
+import Navigation from "@/ui/header/Header";
+import Footer from "@/ui/footer/Footer";
 
 const roboto = Roboto({
   variable: "--font-geist-sans",
