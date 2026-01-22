@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { logout } from '@/utils/auth';
-import { ArrowRightStartOnRectangleIcon, TrashIcon, PencilSquareIcon, PlusCircleIcon, UserCircleIcon} from '@heroicons/react/16/solid';
+import { ArrowRightStartOnRectangleIcon, UserCircleIcon} from '@heroicons/react/16/solid';
 
 
 export default function AdminSideBar() {

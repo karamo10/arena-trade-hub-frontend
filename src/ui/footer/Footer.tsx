@@ -17,7 +17,7 @@ export default function Footer() {
           <FiInstagram className="w-5 h-5 text-white hover:text-white/85 transition-all" />
         </Link>
       </div> */}
-       <p className="footer-text text-[10px] sm:text-sm font-medium text-center text-white mt-3">&copy; 2026 Arena Trade Hub Logistics & Supplies
+       <p className="footer-text text-[15px] sm:text-sm font-medium text-center text-white mt-3">&#169; 2026 Arena Trade Hub Logistics & Supplies
       </p>
     </section>
   );

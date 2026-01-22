@@ -1,9 +1,9 @@
-import { Roboto } from "next/font/google";
+import { Roboto, Jost } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/ui/header/Header";
 import Footer from "@/ui/footer/Footer";
 
-const roboto = Roboto({
+const jost = Jost({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${roboto.variable} ${roboto.variable} antialiased bg-white/50 min-h-screen flex flex-col`}
+        className={`${jost.variable} ${jost.variable} antialiased bg-[#fafbfc] min-h-screen flex flex-col`}
       >
         <Navigation />
         <section className="flex-1">

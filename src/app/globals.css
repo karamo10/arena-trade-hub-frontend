@@ -7,7 +7,6 @@ h1 {
 }
 
 h2,
-h3,
 h4,
 h5 {
     color: #000E24;
@@ -21,6 +20,11 @@ h5 {
 .card,
 .login {
     color: #000E24;
+}
+
+.card:hover,
+.login:hover {
+    color: #00a844;
 }
 
 
@@ -80,5 +84,24 @@ button[type="submit"]:disabled, submit:disabled {
 
 
 .foot {
-    background: linear-gradient(to left, #000E24, #002966);
+    background: linear-gradient(to left, #00a44f, #009a64);
+}
+
+.loyouts {
+    width: min(95%, 70rem);
+    margin-inline: auto;
+    padding-block: 2rem;
+}
+
+button {
+    padding-inline: 12px;
+    padding-block: 6px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.me {
+    color: #e5ebe828;
+    color: #d7f6d886;
 }

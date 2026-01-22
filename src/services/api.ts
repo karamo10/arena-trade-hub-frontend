@@ -23,18 +23,16 @@ async function request(endpoint: string, options: RequestInit = {}) {
 
 // Header Helper
 function getAuthHeaders() {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
 
   if (!token) {
-    throw new Error("Not authenticateded");
+    throw new Error('Not authenticateded');
   }
 
   return {
-     Authorization: `Bearer ${token}`,
-  }
+    Authorization: `Bearer ${token}`,
+  };
 }
-
-
 
 export async function register(name: string, email: string, password: string) {
   return request('/api/auth/register', {
@@ -45,14 +43,13 @@ export async function register(name: string, email: string, password: string) {
 
 export async function login(
   email: string,
-  password: string
+  password: string,
 ): Promise<{ token: string; user: User }> {
   return request('/api/auth/login', {
     method: 'POST',
     body: JSON.stringify({ email, password }),
   });
 }
-
 
 export async function getProducts(q?: string): Promise<Product[]> {
   const url = q ? `/api/products?q=${q}` : `/api/products`;
@@ -62,7 +59,7 @@ export async function getProducts(q?: string): Promise<Product[]> {
 
 // get products by it category
 export async function getProductsByCategory(
-  category: string
+  category: string,
 ): Promise<Product[]> {
   return request(`/api/products?categories=${category}`);
 }
@@ -74,15 +71,15 @@ export async function getProductBySlug(slug: string): Promise<Product> {
 
 // get productById
 export async function getProductById(id: number): Promise<Product> {
-    return request(`/api/products/id/${id}`);
+  return request(`/api/products/id/${id}`);
 }
-
-
 
 // add product
 // API always receives auth
 // export async function addProduct(formData: FormData, token: string)
-export async function addProduct(formData: FormData): Promise<{message: string}> {
+export async function addProduct(
+  formData: FormData,
+): Promise<{ message: string }> {
   const res = await fetch(`${API_URL}/api/products`, {
     method: 'POST',
     headers: getAuthHeaders(), // API Manage Auth Itself
@@ -90,7 +87,7 @@ export async function addProduct(formData: FormData): Promise<{message: string}>
   });
 
   if (!res.ok) {
-    const error = new Error("Request faile") as any;
+    const error = new Error('Request faile') as any;
     error.status = res.status;
     throw error;
   }
@@ -99,15 +96,18 @@ export async function addProduct(formData: FormData): Promise<{message: string}>
 }
 
 // update product
-export async function updateProduct(id: number, formData: FormData): Promise<{message: string}> {
+export async function updateProduct(
+  id: number,
+  formData: FormData,
+): Promise<{ message: string }> {
   const res = await fetch(`${API_URL}/api/products/${id}`, {
     method: 'PATCH',
     headers: getAuthHeaders(),
     body: formData,
   });
 
-   if (!res.ok) {
-    const error = new Error("Request faile") as any;
+  if (!res.ok) {
+    const error = new Error('Request faile') as any;
     error.status = res.status;
     throw error;
   }
@@ -116,16 +116,12 @@ export async function updateProduct(id: number, formData: FormData): Promise<{me
 }
 
 // delete product
-export async function deleteProduct(
-  id: number
-): Promise<{ message: string }> {
+export async function deleteProduct(id: number): Promise<{ message: string }> {
   return request(`/api/products/${id}`, {
     method: 'DELETE',
     headers: getAuthHeaders(),
   });
 }
-
-
 
 // get Users by only Admin
 export async function getUsers(): Promise<User[]> {
@@ -144,26 +140,28 @@ export async function getUsers(): Promise<User[]> {
 }
 
 // update User ROLE by only Admin
-export async function updateUserRole(userId: number, role: 'user' | 'admin'): Promise<{ message: string }> {
-  const token = localStorage.getItem('token')
+export async function updateUserRole(
+  userId: number,
+  role: 'user' | 'admin',
+): Promise<{ message: string }> {
+  const token = localStorage.getItem('token');
   const res = await fetch(`${API_URL}/api/users/${userId}/role`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
-       Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ role }),
   });
 
-   if (!res.ok) {
-    const error = new Error("Request failed") as any;
+  if (!res.ok) {
+    const error = new Error('Request failed') as any;
     error.status = res.status;
     throw error;
   }
-  
+
   return res.json();
 }
-
 
 // getUserProfile
 export async function getProfile(): Promise<UserProfile> {
@@ -182,13 +180,14 @@ export async function getProfile(): Promise<UserProfile> {
 }
 
 // UpdateProfile
-export async function updateProfile(formData: FormData): Promise<{ message: string }> {
-  
+export async function updateProfile(
+  formData: FormData,
+): Promise<{ message: string }> {
   const res = await fetch(`${API_URL}/api/profile`, {
-    method: "PATCH", 
+    method: 'PATCH',
     headers: getAuthHeaders(),
     body: formData,
-  })
+  });
 
   if (!res.ok) {
     const error = new Error('Request fail') as any;

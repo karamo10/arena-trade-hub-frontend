@@ -14,7 +14,7 @@ export default function NavBar() {
   const [openMenu, setOpenMenu] = useState(false);
 
   return (
-    <nav className="bg-white">
+    <nav className="bg-white shadow-sm">
       <div className="flex items-center justify-between px-5 md:px-[100px] h-[70px]">
         <Link href={'/'}>
           {' '}
