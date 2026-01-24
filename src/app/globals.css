@@ -105,3 +105,37 @@ button {
     color: #e5ebe828;
     color: #d7f6d886;
 }
+
+
+:root {
+
+    /* text-color */
+    --txt-clr-500: #101828;
+    --txt-clr-200: #6a7282;
+
+    /* border color */
+    --border-clr: #e5e7eb;
+}
+
+/* text-gray-900 */
+.text-clr-primary {
+    color: var(--txt-clr-500);
+}
+/* text-gray-500 */
+.text-clr-secondary {
+    color: var(--txt-200);
+}
+
+/* text-gray-500 */
+.txt-col-gray-200 {
+    color: var(--txt-clr-100);
+}
+
+
+
+
+
+
+.border-clr-100 {
+    color: var(--border-clr);
+}

@@ -6,12 +6,12 @@ import { register } from '@/services/api';
 import PasswordInput from '@/ui/inputs/PasswordInput';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
-import { AtSymbolIcon, UserCircleIcon, KeyIcon, ArrowLongRightIcon, ExclamationCircleIcon} from '@heroicons/react/16/solid';
+import { AtSymbolIcon, UserCircleIcon, ArrowLongRightIcon, ExclamationCircleIcon} from '@heroicons/react/16/solid';
 
 
 export default function RegisterPage() {
   const router = useRouter();
-  const [form, setForm] = useState({ name: '', email: '', password: '' });
+  const [form, setForm] = useState({ first_name: '', last_name: '', email: '', password: '' });
   const [creatingUser, setCreatingUser] = useState(false);
   const [erroMessage, setErroMessage] = useState(false);
 
@@ -24,7 +24,7 @@ export default function RegisterPage() {
     setCreatingUser(true);
 
     try {
-      const response = await register(form.name, form.email, form.password);
+      const response = await register(form);
       // console.log('Registered', response);
       router.push('/login');
     } catch (err) {
@@ -47,9 +47,22 @@ export default function RegisterPage() {
           <div className="relative">
             <input
               type="text"
-              name="name"
-              placeholder="Username"
-              value={form.name}
+              name="first_name"
+              placeholder="Fisrt Name"
+              value={form.first_name}
+              onChange={handleChange}
+              disabled={creatingUser}
+              required
+              className="peer w-full border border-slate-400 bg-white/50 focus:border-[#000428] focus:ring-[#000428] rounded px-11 py-2 outline-none placeholder:text-sm placeholder:text-slate-800"
+            />
+            <UserCircleIcon className="absolute w-5 h-5 top-3 left-3.5 peer-focus:text-[#000428]" />
+          </div>
+          <div className="relative">
+            <input
+              type="text"
+              name="last_name"
+              placeholder="Last Name"
+              value={form.last_name}
               onChange={handleChange}
               disabled={creatingUser}
               required

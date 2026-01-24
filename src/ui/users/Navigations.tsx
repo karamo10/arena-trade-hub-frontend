@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { getProfile } from '@/services/api';
-import { UserProfile } from '@/types/user-profile-type';
+import { getReadOnlyProfile } from '@/services/api';
+import { ProfileReadOnly } from '@/types/user-profile-type';
 import Image from 'next/image';
 import Link from 'next/link';
 import LogoutButton from '../buttons/LogoutButton';
@@ -10,33 +10,34 @@ import { logout } from '@/utils/auth';
 import { useLockBodyScroll } from '@/hooks/useLockBodyScroll';
 
 export default function Navigation() {
-  const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [profile, setProfile] = useState<ProfileReadOnly | null>(null);
   const [block, setBlock] = useState(false);
 
   useLockBodyScroll(block);
 
   useEffect(() => {
-    async function fetchProfile() {
+    async function fetchReadOnlyProfile() {
       try {
-        const res = await getProfile();
+        const res = await getReadOnlyProfile();
         setProfile(res);
       } catch (err) {
         handleAuthError(err);
         console.error(err);
       }
     }
-    fetchProfile();
+    fetchReadOnlyProfile();
   }, []);
 
   return (
     <div className="flex flex-col gap-6">
+      
       {/* desktop navigation */}
       <div className="hidden lg:block">
         <div className="bg-purple-500 shadow-2xl rounded-2xl overflow-hidden ">
           <div className="bg-[#09a744] flex items-center justify-between p-6">
             <div className="flex items-center space-x-4">
               <Image
-                src={profile?.image || '/images/logo.jpeg'}
+                src={profile?.image || '/images/avater.png'}
                 alt={'profile image'}
                 width={45}
                 height={45}
@@ -44,10 +45,10 @@ export default function Navigation() {
               />
               <div>
                 <h3 className="font-bold text-white text-lg">
-                  K4RA:{profile?.name}
+                  {profile?.first_name}
                 </h3>
                 <p className="text-white/80 text-sm">
-                  useremail@gmail.com:{profile?.email}
+                  {profile?.email}
                 </p>
               </div>
             </div>
@@ -84,10 +85,10 @@ export default function Navigation() {
               </div>
               {/*  */}
               <div className="flex flex-col">
-                <h4 className="text-gray-900 text-sm font-medium capitalize">
+                <h4 className="text-clr-primarytext-sm font-medium capitalize">
                   profile
                 </h4>
-                <p className="text-gray-500 text-xs capitalize">
+                <p className="text-clr-secondary text-xs capitalize">
                   Personal information
                 </p>
               </div>
@@ -115,10 +116,10 @@ export default function Navigation() {
               </div>
               {/*  */}
               <div className="flex flex-col">
-                <h4 className="text-gray-900 text-sm font-medium capitalize">
+                <h4 className="text-clr-primary text-sm font-medium capitalize">
                   Orders
                 </h4>
-                <p className="text-gray-500 text-xs capitalize">
+                <p className="text-clr-secondary text-xs capitalize">
                   Track your orders
                 </p>
               </div>
@@ -146,10 +147,10 @@ export default function Navigation() {
               </div>
               {/*  */}
               <div className="flex flex-col">
-                <h4 className="text-gray-900 text-sm font-medium capitalize">
+                <h4 className="text-clr-primary text-sm font-medium capitalize">
                   Wishlist
                 </h4>
-                <p className="text-gray-500 text-xs capitalize">Saved items</p>
+                <p className="text-clr-secondary text-xs capitalize">Saved items</p>
               </div>
             </Link>
           </nav>
@@ -161,15 +162,15 @@ export default function Navigation() {
         <div className="bg-white flex justify-between p-4 shadow-sm rounded-md">
           <div className="flex items-center space-x-3">
             <Image
-              src={'/images/logo.jpeg'}
+              src={profile?.image || '/images/avater.png'}
               alt={'user avatar'}
               width={30}
               height={30}
               className="object-cover border border-gray-200 rounded-full"
             />
             <div>
-              <h3 className="font-semibold uppercase">k4ra: {profile?.name}</h3>
-              <p className="text-sm text-gray-500 capitalize">User dashboard</p>
+              <h3 className="font-semibold uppercase">{profile?.first_name}</h3>
+              <p className="text-sm text-clr-secondary capitalize">User dashboard</p>
             </div>
           </div>
           {/* click */}
@@ -214,23 +215,23 @@ export default function Navigation() {
 
       {/* mobile navigation */}
       {block && (
-        <div className="">
+        <div className="lg:hidden">
           <div className="bg-purple-0 shadow-2xl rounded-2xl overflow-hidden ">
             <div className="bg-[#09a744] flex items-center justify-between p-6">
               <div className="flex items-center space-x-4">
                 <Image
-                  src={profile?.image || '/images/logo.jpeg'}
+                  src={profile?.image || '/images/avater.png'}
                   alt={'profile image'}
                   width={45}
                   height={45}
                   className="block object-cover rounded-full"
                 />
                 <div>
-                  <h3 className="font-bold text-white text-lg">
-                    K4RA:{profile?.name}
+                  <h3 className="font-bold text-white text-lg uppercase">
+                    {profile?.first_name}
                   </h3>
                   <p className="text-white/80 text-sm">
-                    useremail@gmail.com:{profile?.email}
+                   {profile?.email}
                   </p>
                   <div className="flex items-center space-x-2">
                     <div className="w-2 h-2 bg-[#05df72] rounded-full"></div>
@@ -265,10 +266,10 @@ export default function Navigation() {
                   </div>
                   {/*  */}
                   <div className="flex flex-col">
-                    <h4 className="text-gray-900 text-sm font-medium capitalize">
+                    <h4 className="text-clr-primary text-sm font-medium capitalize">
                       profile
                     </h4>
-                    <p className="text-gray-500 text-xs capitalize">
+                    <p className="text-clr-secondary text-xs capitalize">
                       Personal information
                     </p>
                   </div>
@@ -312,10 +313,10 @@ export default function Navigation() {
                   </div>
                   {/*  */}
                   <div className="flex flex-col">
-                    <h4 className="text-gray-900 text-sm font-medium capitalize">
+                    <h4 className="text-clr-primary text-sm font-medium capitalize">
                       Orders
                     </h4>
-                    <p className="text-gray-500 text-xs capitalize">
+                    <p className="text-clr-secondary text-xs capitalize">
                       Track your orders
                     </p>
                   </div>
@@ -359,10 +360,10 @@ export default function Navigation() {
                   </div>
                   {/*  */}
                   <div className="flex flex-col">
-                    <h4 className="text-gray-900 text-sm font-medium capitalize">
+                    <h4 className="text-clr-primary text-sm font-medium capitalize">
                       Wishlist
                     </h4>
-                    <p className="text-gray-500 text-xs capitalize">
+                    <p className="text-clr-secondary text-xs capitalize">
                       Saved items
                     </p>
                   </div>
@@ -383,6 +384,7 @@ export default function Navigation() {
                 </svg>
               </Link>
             </nav>
+            {/* sign out */}
             <div className=" p-3 border-t border-t-gray-200">
               <button className="w-full inline-flex items-center justify-start gap-3 text-[#e7000b] text-sm hover:bg-[#e7000c0c] transition-all duration-300 p-7">
                 <svg
@@ -405,6 +407,7 @@ export default function Navigation() {
           </div>
         </div>
       )}
+
     </div>
   );
 }

@@ -23,7 +23,7 @@ export default function LoginPage() {
     setUserLogging(true);
 
     try {
-      const res = await login(form.email, form.password);
+      const res = await login(form);
       // Saving the token and user to localstorage
       localStorage.setItem('token', res.token);
       localStorage.setItem('user', JSON.stringify(res.user))

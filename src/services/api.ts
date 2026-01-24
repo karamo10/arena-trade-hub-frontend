@@ -1,6 +1,6 @@
 import { Product } from '@/types/product-data-type';
-import { UserProfile } from '@/types/user-profile-type';
-import { User } from '@/types/user-type';
+import { UserProfile, ProfileReadOnly } from '@/types/user-profile-type';
+import { User, Register, Login } from '@/types/user-type';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
@@ -34,20 +34,17 @@ function getAuthHeaders() {
   };
 }
 
-export async function register(name: string, email: string, password: string) {
+export async function register(payload: Register): Promise<{ message: string }> {
   return request('/api/auth/register', {
     method: 'POST',
-    body: JSON.stringify({ name, email, password }),
+    body: JSON.stringify(payload),
   });
 }
 
-export async function login(
-  email: string,
-  password: string,
-): Promise<{ token: string; user: User }> {
+export async function login(payload: Login): Promise<{ token: string; user: User }> {
   return request('/api/auth/login', {
     method: 'POST',
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify(payload),
   });
 }
 
@@ -163,7 +160,7 @@ export async function updateUserRole(
   return res.json();
 }
 
-// getUserProfile
+// getUserProfile by the User
 export async function getProfile(): Promise<UserProfile> {
   const res = await fetch(`${API_URL}/api/profile`, {
     method: 'GET',
@@ -192,6 +189,22 @@ export async function updateProfile(
   if (!res.ok) {
     const error = new Error('Request fail') as any;
     error.status = res.status;
+    throw error;
+  }
+
+  return res.json();
+}
+
+// getReadOnlyProfile
+export async function getReadOnlyProfile(): Promise<ProfileReadOnly> {
+  const res = await fetch(`${API_URL}/api/profile/readonly`, {
+    method: 'GET',
+    headers: getAuthHeaders(),
+  });
+
+  if (!res.ok) {
+    const error = new Error('Request fail') as any
+    error.status = res.status
     throw error;
   }
 

@@ -8,6 +8,20 @@ export type UserProfile = {
     image?: string;
 }
 
+// export type ProfileBasic = {
+//     id: number;
+    // first_name: string;
+    // email: string;
+    // image?: string;
+// }
+
+export type ProfileReadOnly = {
+    id: number;
+    first_name: string;
+    email: string;
+    image?: string;
+}
+
 // export type UpdateUserProfile = {
 //     name?: string;
 //     address?: string;
