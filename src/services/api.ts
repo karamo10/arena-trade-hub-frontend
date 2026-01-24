@@ -1,5 +1,9 @@
 import { Product } from '@/types/product-data-type';
-import { UserProfile, ProfileReadOnly } from '@/types/user-profile-type';
+import {
+  UserProfile,
+  BasicProfile,
+  ProfileReadOnly,
+} from '@/types/user-profile-type';
 import { User, Register, Login } from '@/types/user-type';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
@@ -34,14 +38,18 @@ function getAuthHeaders() {
   };
 }
 
-export async function register(payload: Register): Promise<{ message: string }> {
+export async function register(
+  payload: Register,
+): Promise<{ message: string }> {
   return request('/api/auth/register', {
     method: 'POST',
     body: JSON.stringify(payload),
   });
 }
 
-export async function login(payload: Login): Promise<{ token: string; user: User }> {
+export async function login(
+  payload: Login,
+): Promise<{ token: string; user: User }> {
   return request('/api/auth/login', {
     method: 'POST',
     body: JSON.stringify(payload),
@@ -195,6 +203,22 @@ export async function updateProfile(
   return res.json();
 }
 
+// getBsicProfile
+export async function getBasicProfile(): Promise<BasicProfile> {
+  const res = await fetch(`${API_URL}/api/profile/basic`, {
+    method: 'GET',
+    headers: getAuthHeaders(),
+  });
+
+  if (!res.ok) {
+    const error = new Error('Request fail') as any;
+    error.status = res.status;
+    throw error;
+  }
+
+  return res.json();
+}
+
 // getReadOnlyProfile
 export async function getReadOnlyProfile(): Promise<ProfileReadOnly> {
   const res = await fetch(`${API_URL}/api/profile/readonly`, {
@@ -203,8 +227,8 @@ export async function getReadOnlyProfile(): Promise<ProfileReadOnly> {
   });
 
   if (!res.ok) {
-    const error = new Error('Request fail') as any
-    error.status = res.status
+    const error = new Error('Request fail') as any;
+    error.status = res.status;
     throw error;
   }
 

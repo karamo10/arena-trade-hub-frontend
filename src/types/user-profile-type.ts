@@ -8,18 +8,18 @@ export type UserProfile = {
     image?: string;
 }
 
-// export type ProfileBasic = {
-//     id: number;
-    // first_name: string;
-    // email: string;
-    // image?: string;
-// }
-
-export type ProfileReadOnly = {
+export type BasicProfile = {
     id: number;
     first_name: string;
     email: string;
     image?: string;
+}
+
+export type ProfileReadOnly = {
+    id: number;
+    first_name: string;
+    last_name: string;
+    email: string;
 }
 
 // export type UpdateUserProfile = {

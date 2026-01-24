@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { getReadOnlyProfile } from '@/services/api';
-import { ProfileReadOnly } from '@/types/user-profile-type';
+import { getBasicProfile } from '@/services/api';
+import { BasicProfile } from '@/types/user-profile-type';
 import Image from 'next/image';
 import Link from 'next/link';
 import LogoutButton from '../buttons/LogoutButton';
@@ -10,27 +10,26 @@ import { logout } from '@/utils/auth';
 import { useLockBodyScroll } from '@/hooks/useLockBodyScroll';
 
 export default function Navigation() {
-  const [profile, setProfile] = useState<ProfileReadOnly | null>(null);
+  const [profile, setProfile] = useState<BasicProfile | null>(null);
   const [block, setBlock] = useState(false);
 
   useLockBodyScroll(block);
 
   useEffect(() => {
-    async function fetchReadOnlyProfile() {
+    async function fetchBasicProfile() {
       try {
-        const res = await getReadOnlyProfile();
+        const res = await getBasicProfile();
         setProfile(res);
       } catch (err) {
         handleAuthError(err);
         console.error(err);
       }
     }
-    fetchReadOnlyProfile();
+    fetchBasicProfile();
   }, []);
 
   return (
     <div className="flex flex-col gap-6">
-      
       {/* desktop navigation */}
       <div className="hidden lg:block">
         <div className="bg-purple-500 shadow-2xl rounded-2xl overflow-hidden ">
@@ -47,9 +46,7 @@ export default function Navigation() {
                 <h3 className="font-bold text-white text-lg">
                   {profile?.first_name}
                 </h3>
-                <p className="text-white/80 text-sm">
-                  {profile?.email}
-                </p>
+                <p className="text-white/80 text-sm">{profile?.email}</p>
               </div>
             </div>
             <div className="flex items-center space-x-4">
@@ -150,7 +147,9 @@ export default function Navigation() {
                 <h4 className="text-clr-primary text-sm font-medium capitalize">
                   Wishlist
                 </h4>
-                <p className="text-clr-secondary text-xs capitalize">Saved items</p>
+                <p className="text-clr-secondary text-xs capitalize">
+                  Saved items
+                </p>
               </div>
             </Link>
           </nav>
@@ -170,7 +169,9 @@ export default function Navigation() {
             />
             <div>
               <h3 className="font-semibold uppercase">{profile?.first_name}</h3>
-              <p className="text-sm text-clr-secondary capitalize">User dashboard</p>
+              <p className="text-sm text-clr-secondary capitalize">
+                User dashboard
+              </p>
             </div>
           </div>
           {/* click */}
@@ -230,9 +231,7 @@ export default function Navigation() {
                   <h3 className="font-bold text-white text-lg uppercase">
                     {profile?.first_name}
                   </h3>
-                  <p className="text-white/80 text-sm">
-                   {profile?.email}
-                  </p>
+                  <p className="text-white/80 text-sm">{profile?.email}</p>
                   <div className="flex items-center space-x-2">
                     <div className="w-2 h-2 bg-[#05df72] rounded-full"></div>
                     <span className="text-white/80 text-sm">Active</span>
@@ -407,7 +406,6 @@ export default function Navigation() {
           </div>
         </div>
       )}
-
     </div>
   );
 }

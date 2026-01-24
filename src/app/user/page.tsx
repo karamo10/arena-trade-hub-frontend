@@ -1,23 +1,24 @@
 'use client';
 
-import useAuth from '@/hooks/useAuth';
-import Profile from '@/ui/users/Profile';
+import handleAuthError from '@/lib/handleAuthError';
+import { getReadOnlyProfile } from '@/services/api';
+import { ProfileReadOnly } from '@/types/user-profile-type';
 import { useEffect, useState } from 'react';
 
 export default function ProfilePage() {
-  useAuth();
-  const [userName, setUserName] = useState<string | null>(null);
+  const [profile, setProfile] = useState<ProfileReadOnly | null>(null);
 
   useEffect(() => {
-    const userJson = localStorage.getItem('user');
-    if (userJson) {
+    async function fetchReadOnlyProfile() {
       try {
-        const parse = JSON.parse(userJson);
-        setUserName(parse.name ?? null);
+        const res = await getReadOnlyProfile();
+        setProfile(res);
       } catch (err) {
-        setUserName(null);
+        handleAuthError(err);
+        console.error(err);
       }
     }
+    fetchReadOnlyProfile();
   }, []);
 
   return (
@@ -96,7 +97,6 @@ export default function ProfilePage() {
             Edit Profile
           </span>
         </div>
-
       </div>
 
       {/* form div*/}
@@ -104,18 +104,18 @@ export default function ProfilePage() {
         <form className="bg-white rounded-xl shadow-lg border-0">
           <div className="flex flex-col space-y-1.5 p-6">
             <div className="font-semibold flex items-center space-x-2">
-               <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  className="size-5 text-gray-600"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                className="size-5 text-gray-600"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
                 />
               </svg>
               <span className="text-sm">Personal Information</span>
@@ -124,27 +124,47 @@ export default function ProfilePage() {
           <div className="p-6 pt-0 space-y-4">
             <div className="space-y-3">
               <div>
-                <label htmlFor="firstname" className="text-sm font-medium text-clr-secondary">First Name</label>
-                <p className="text-clr-primary  bg-gray-50 p-2 rounded-md cursor-not-allowed">K4RA</p>
+                <label
+                  htmlFor="firstname"
+                  className="text-sm font-medium text-clr-secondary"
+                >
+                  First Name
+                </label>
+                <p className="text-clr-primary bg-gray-50 p-2 rounded-md cursor-not-allowed uppercase">
+                 { profile?.first_name } 
+                </p>
                 <p className="text-xs text-gray-400 mt-1">(Read-only)</p>
               </div>
               {/*  */}
-               <div>
-                <label htmlFor="lastname" className="text-sm font-medium text-clr-secondary">Last Name</label>
-                <p className="text-clr-primary  bg-gray-50 p-2 rounded-md cursor-not-allowed">CAMARA</p>
+              <div>
+                <label
+                  htmlFor="lastname"
+                  className="text-sm font-medium text-clr-secondary"
+                >
+                  Last Name
+                </label>
+                <p className="text-clr-primary  bg-gray-50 p-2 rounded-md cursor-not-allowed uppercase">
+                  { profile?.last_name || 'Not provided' }
+                </p>
                 <p className="text-xs text-gray-400 mt-1">(Read-only)</p>
               </div>
               {/*  */}
-               <div>
-                <label htmlFor="email" className="text-sm font-medium text-clr-secondary">Email</label>
-                <p className="text-clr-primary  bg-gray-50 p-2 rounded-md cursor-not-allowed">k4ra@gmail.com</p>
+              <div>
+                <label
+                  htmlFor="email"
+                  className="text-sm font-medium text-clr-secondary"
+                >
+                  Email
+                </label>
+                <p className="text-clr-primary  bg-gray-50 p-2 rounded-md cursor-not-allowed lowercase">
+                  { profile?.email }
+                </p>
                 <p className="text-xs text-gray-400 mt-1">(Read-only)</p>
               </div>
-          </div>
+            </div>
           </div>
         </form>
       </div>
     </div>
   );
 }
-
