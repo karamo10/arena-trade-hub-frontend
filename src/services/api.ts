@@ -1,6 +1,6 @@
 import { Product } from '@/types/product-data-type';
 import {
-  UserProfile,
+  FullProfile,
   BasicProfile,
   ProfileReadOnly,
 } from '@/types/user-profile-type';
@@ -168,30 +168,12 @@ export async function updateUserRole(
   return res.json();
 }
 
-// getUserProfile by the User
-export async function getProfile(): Promise<UserProfile> {
+
+// getFullProfile by the User
+export async function getFullProfile(): Promise<FullProfile> {
   const res = await fetch(`${API_URL}/api/profile`, {
     method: 'GET',
     headers: getAuthHeaders(),
-  });
-
-  if (!res.ok) {
-    const error = new Error('Request fail') as any;
-    error.status = res.status;
-    throw error;
-  }
-
-  return res.json();
-}
-
-// UpdateProfile
-export async function updateProfile(
-  formData: FormData,
-): Promise<{ message: string }> {
-  const res = await fetch(`${API_URL}/api/profile`, {
-    method: 'PATCH',
-    headers: getAuthHeaders(),
-    body: formData,
   });
 
   if (!res.ok) {
@@ -224,6 +206,25 @@ export async function getReadOnlyProfile(): Promise<ProfileReadOnly> {
   const res = await fetch(`${API_URL}/api/profile/readonly`, {
     method: 'GET',
     headers: getAuthHeaders(),
+  });
+
+  if (!res.ok) {
+    const error = new Error('Request fail') as any;
+    error.status = res.status;
+    throw error;
+  }
+
+  return res.json();
+}
+
+// UpdateProfile
+export async function updateProfile(
+  formData: FormData,
+): Promise<{ message: string }> {
+  const res = await fetch(`${API_URL}/api/profile`, {
+    method: 'PATCH',
+    headers: getAuthHeaders(),
+    body: formData,
   });
 
   if (!res.ok) {

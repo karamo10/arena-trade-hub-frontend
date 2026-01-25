@@ -4,12 +4,13 @@ export default function UserLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <section className="bg-red-100 loyouts">
+    <section className="bg-red-0 loyouts">
       {/* <p className="warn text-center text-xs my-1">
         ⚠️ This page is under development
       </p> */}
       <Navigation />
       {children}
+      <p>User page Layout</p>
     </section>
   );
 }

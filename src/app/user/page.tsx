@@ -4,9 +4,14 @@ import handleAuthError from '@/lib/handleAuthError';
 import { getReadOnlyProfile } from '@/services/api';
 import { ProfileReadOnly } from '@/types/user-profile-type';
 import { useEffect, useState } from 'react';
+import { EditProfile } from '@/ui/users/EditProfile';
+import { useLockBodyScroll } from '@/hooks/useLockBodyScroll';
 
 export default function ProfilePage() {
   const [profile, setProfile] = useState<ProfileReadOnly | null>(null);
+  const [open, setOPen] = useState<boolean>(false);
+
+  useLockBodyScroll(open)
 
   useEffect(() => {
     async function fetchReadOnlyProfile() {
@@ -26,7 +31,7 @@ export default function ProfilePage() {
       {/* first child */}
       <div className="flex items-center justify-evenly bg-white p-6 shadow-lg rounded-md border border-amber-950">
         {/* member since */}
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-3 ">
           <div className="p-2 bg-blue-100 rounded-lg">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +82,10 @@ export default function ProfilePage() {
         </div>
 
         {/* edit profile btn */}
-        <div className="bg-black inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg whitespace-nowrap hover:opacity-85 transition-all duration-300 cursor-pointer">
+        <div
+          className="bg-black inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg whitespace-nowrap hover:opacity-85 transition-all duration-300 cursor-pointer"
+          onClick={() => setOPen(true)}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -131,7 +139,7 @@ export default function ProfilePage() {
                   First Name
                 </label>
                 <p className="text-clr-primary bg-gray-50 p-2 rounded-md cursor-not-allowed uppercase">
-                 { profile?.first_name } 
+                  {profile?.first_name}
                 </p>
                 <p className="text-xs text-gray-400 mt-1">(Read-only)</p>
               </div>
@@ -144,7 +152,7 @@ export default function ProfilePage() {
                   Last Name
                 </label>
                 <p className="text-clr-primary  bg-gray-50 p-2 rounded-md cursor-not-allowed uppercase">
-                  { profile?.last_name || 'Not provided' }
+                  {profile?.last_name || 'Not provided'}
                 </p>
                 <p className="text-xs text-gray-400 mt-1">(Read-only)</p>
               </div>
@@ -157,7 +165,7 @@ export default function ProfilePage() {
                   Email
                 </label>
                 <p className="text-clr-primary  bg-gray-50 p-2 rounded-md cursor-not-allowed lowercase">
-                  { profile?.email }
+                  {profile?.email}
                 </p>
                 <p className="text-xs text-gray-400 mt-1">(Read-only)</p>
               </div>
@@ -165,6 +173,9 @@ export default function ProfilePage() {
           </div>
         </form>
       </div>
+      {open && (
+        <EditProfile onClose={() => setOPen(false)} />
+      )}
     </div>
   );
 }

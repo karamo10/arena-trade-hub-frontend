@@ -123,11 +123,11 @@ button {
 }
 /* text-gray-500 */
 .text-clr-secondary {
-    color: var(--txt-200);
+    color: var(--txt-clr-200);
 }
 
 /* text-gray-500 */
-.txt-col-gray-200 {
+.border-col-secondary {
     color: var(--txt-clr-100);
 }
 

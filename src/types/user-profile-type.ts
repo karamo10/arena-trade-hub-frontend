@@ -1,10 +1,12 @@
-
-export type UserProfile = {
+// User Profile Types
+export type FullProfile = {
     id: number;
-    name: string;
+    first_name: string;
+    last_name: string;
     email: string;
     address?: string;
-    whatsapp_number?: string;
+    street_address?: string;
+    phone_number?: string;
     image?: string;
 }
 
