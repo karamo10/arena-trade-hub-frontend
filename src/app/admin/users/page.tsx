@@ -70,7 +70,7 @@ export default function UsersPage() {
             key={user.id}
             className="w-[90%] mx-auto flex flex-col items-center justify-between md:flex-row lg:flex-row bg-white p-1 md:p-4 lg:p-4 shadow-sm rounded-lg"
           >
-            <p className="font-medium">{user.name}</p>
+            <p className="font-medium">{user.first_name}</p>
             <p className="font-light">{user.email}</p>
             <p>{user.role}</p>
             <button
