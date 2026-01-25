@@ -101,7 +101,8 @@ export function EditProfile({ onClose }: EditProfileProps) {
                 </div>
               </div>
             </div>
-            {/* Additional Information (Editable) form */}
+
+            {/* Additional Information (Editable) */}
             <div className="space-y-4">
               <div className="space-y-3 border border-[#e5e7eb] rounded-lg p-4 bg-white">
                 {/* form header */}
@@ -180,7 +181,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
                   </div>
                 </div>
                 {/* phone number */}
-                <div className="space-y-4">
+                {/* <div className="space-y-4">
                   <div className="space-y-2">
                     <label
                       htmlFor="phoneNumber"
@@ -210,10 +211,98 @@ export function EditProfile({ onClose }: EditProfileProps) {
                       autoComplete="new-phoneNumber"
                     />
                   </div>
-                </div>
-                {/*  */}
+                </div> */}
               </div>
             </div>
+
+            {/* Add Shipping Address */}
+            <div className="space-y-4">
+              {/* header */}
+              <div className="flex flex-col gap-1.5 p-4 font-semibold">
+                <h2 className="text-clr-primary text-sm font-medium flex items-center space-x-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    className="size-5 tetx-gray-500"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                    />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+                    />
+                  </svg>
+                  <span className="text-sm">Add Address</span>
+                </h2>
+                <p className="text-sm text-clr-secondary font-normal break-words">
+                  Add address to your account.
+                </p>
+              </div>
+              <div className="bg-red-0 space-y-3 border border-[#e5e7eb] rounded-lg p-4 bg-white">
+                {/* address */}
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <label
+                      htmlFor="address"
+                      className="text-clr-primary text-sm font-medium"
+                    >
+                      Address
+                    </label>
+                    <input
+                      type="text"
+                      name="address"
+                      placeholder="e.g., Banjul, Kanifing, Farato "
+                      className="w-full p-2 placeholder:text-sm border border-[#e5e7eb] rounded shadow-xs bg-transparent mt-1"
+                      autoComplete="new-address"
+                    />
+                  </div>
+                </div>
+                {/* phone number */}
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <label
+                      htmlFor="phoneNumber"
+                      className="text-sm font-medium"
+                    >
+                      Phone Number
+                    </label>
+                    <input
+                      type="tel"
+                      name="phoneNumber"
+                      placeholder="Enter phone number"
+                      className="w-full p-2 placeholder:text-sm border border-[#e5e7eb] rounded shadow-xs bg-transparent mt-1"
+                      autoComplete="new-phoneNumber"
+                    />
+                  </div>
+                </div>
+                {/* street address */}
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <label
+                      htmlFor="streetAddress"
+                      className="text-clr-primary text-sm font-medium"
+                    >
+                      Street Address
+                    </label>
+                    <input
+                      type="text"
+                      name="address"
+                      placeholder="Enter your street address (house number, street name)"
+                      className="w-full p-2 placeholder:text-sm border border-[#e5e7eb] rounded shadow-xs bg-transparent break-words mt-1"
+                      autoComplete="new-streetAddress"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Save changes button */}
             <div className="bg-red-0 pt-6 border-t border-t-[#e5e7eb] px-1">
               <button className="inline-flex items-center justify-center gap-2 bg-black w-full text-white text-sm hover:opacity-85 transition-all duration-200 cursor-pointer">
@@ -235,41 +324,11 @@ export function EditProfile({ onClose }: EditProfileProps) {
                 <span className="font-normal">Save Changes</span>
               </button>
             </div>
-
-            {/* Add Shipping Address */}
-            <div className="space-y-4">
-              <div className="flex flex-col gap-1.5 p-4 font-semibold">
-                <h2 className="text-clr-primary text-sm font-medium flex items-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    className="size-5 tetx-gray-500"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                    />
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
-                    />
-                  </svg>
-                  <span className="text-sm">Add Shipping Address</span>
-                </h2>
-                <p className="text-sm text-clr-secondary font-normal break-words">
-                  Add a new shipping address to your account.
-                </p>
-              </div>
-            </div>
           </form>
         </div>
+
+        {/* close edit form */}
         <div>
-          {/* close edit form */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
