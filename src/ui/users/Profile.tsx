@@ -1,15 +1,15 @@
 'use client';
 
 import handleAuthError from '@/lib/handleAuthError';
-import { getProfile, updateProfile } from '@/services/api';
-import { UserProfile } from '@/types/user-profile-type';
+import { getFullProfile, updateProfile } from '@/services/api';
+import { FullProfile } from '@/types/user-profile-type';
 import { PlusCircleIcon } from '@heroicons/react/20/solid';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
 export default function Profile() {
-  const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [profile, setProfile] = useState<FullProfile | null>(null);
   const [userProfile, setUserProfile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
@@ -25,7 +25,7 @@ export default function Profile() {
   useEffect(() => {
     async function fetchProfile() {
       try {
-        const res = await getProfile();
+        const res = await getFullProfile();
         setProfile(res);
       } catch (err) {
         handleAuthError(err);
@@ -40,9 +40,9 @@ export default function Profile() {
     setSaving(true);
 
     const fd = new FormData();
-    fd.append('name', profile.name);
+    fd.append('name', profile.first_name);
     fd.append('address', profile.address || '');
-    fd.append('whatsapp_number', profile.whatsapp_number || '');
+    fd.append('whatsapp_number', profile.phone_number || '');
 
     if (userProfile) {
       fd.append('image', userProfile);
@@ -91,9 +91,9 @@ export default function Profile() {
           <div>
             <label className="font-medium text-sm">username</label>
             <input
-              value={profile.name}
+              value={profile.first_name}
               className="block w-full bg-slate-200 text-xl p-3 opacity-80 rounded border border-slate-400 outline-none cursor-not-allowed"
-              onChange={(e) => setProfile({ ...profile, name: e.target.value })}
+              onChange={(e) => setProfile({ ...profile, first_name: e.target.value })}
               readOnly
             />
           </div>
@@ -121,11 +121,11 @@ export default function Profile() {
           <div className="mt-3 relative">
             <label className="font-medium text-sm">whatsapp number</label>
             <input
-              value={profile.whatsapp_number || ''}
+              value={profile.phone_number || ''}
               className="block w-full bg-slate-200 text-lg opacity-80 py-3 px-13 rounded border border-slate-400 focus:border-indigo-900 outline-none"
               minLength={7}
               onChange={(e) =>
-                setProfile({ ...profile, whatsapp_number: e.target.value })
+                setProfile({ ...profile, phone_number: e.target.value })
               }
             />
             <p className="absolute top-9 left-2 text-lg opacity-80">+220</p>
