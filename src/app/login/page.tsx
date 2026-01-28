@@ -73,7 +73,7 @@ export default function LoginPage() {
         <button
           type="submit"
           disabled={userLogging}
-          className="inline-flex items-center justify-between text-white py-2 px-3 font-medium bg-gradient-to-l from-[#000428] to-[#004e92] w-full hover:opacity-80 rounded cursor-pointer"
+          className="inline-flex items-center justify-between text-white py-2 px-3 font-medium bg-gradient-to-l from-[#004e92] to-[#000428] w-full hover:opacity-80 rounded cursor-pointer"
         >
             Login
             <ArrowLongRightIcon className="w-5 h-5" />

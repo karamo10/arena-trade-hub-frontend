@@ -32,8 +32,8 @@ export default function Navigation() {
     <div className="flex flex-col gap-6">
       {/* desktop navigation */}
       <div className="hidden lg:block">
-        <div className="bg-purple-500 shadow-2xl rounded-2xl overflow-hidden ">
-          <div className="bg-[#09a744] flex items-center justify-between p-6">
+        <div className="shadow-2xl rounded-2xl overflow-hidden ">
+          <div className="bg-secondary flex items-center justify-between p-6">
             <div className="flex items-center space-x-4">
               <Image
                 src={profile?.image || '/images/avater.png'}
@@ -62,16 +62,16 @@ export default function Navigation() {
             {/* profile page*/}
             <Link
               href={'/user'}
-              className="flex items-center px-4 py-3 space-x-3 border border-gray-200 rounded-lg hover:border-[#3b9c3c] transition-all duration-300 group"
+              className="flex items-center px-4 py-3 space-x-3 border border-gray-200 rounded-lg hover:border-[#004e92] transition-all duration-300 group"
             >
-              <div className="bg-gray-100 p-1 rounded-lg group-hover:bg-[#d7f6d886] transition-all duration-300">
+              <div className="bg-gray-100 p-1 rounded-lg group-hover:bg-[#004e92] transition-all duration-300">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  className="size-6 text-gray-600 group-hover:text-[#3b9c3c] transition-all duration-300"
+                  className="size-6 text-gray-600 group-hover:text-white transition-all duration-300"
                 >
                   <path
                     stroke-linecap="round"
@@ -93,16 +93,16 @@ export default function Navigation() {
             {/* orders page*/}
             <Link
               href={'/user/orders'}
-              className="flex items-center px-4 py-3 space-x-3 border border-gray-200 rounded-lg hover:border-[#3b9c3c] transition-all duration-300 group"
+              className="flex items-center px-4 py-3 space-x-3 border border-gray-200 rounded-lg hover:border-[#004e92] transition-all duration-300 group"
             >
-              <div className="bg-gray-100 p-1 rounded-lg group-hover:bg-[#d7f6d886] transition-all duration-300">
+              <div className="bg-gray-100 p-1 rounded-lg group-hover:bg-[#004e92] transition-all duration-300">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  className="size-6 text-gray-600 group-hover:text-[#3b9c3c] transition-all duration-300"
+                  className="size-6 text-gray-600 group-hover:text-white transition-all duration-300"
                 >
                   <path
                     stroke-linecap="round"
@@ -124,16 +124,16 @@ export default function Navigation() {
             {/* wishlists page*/}
             <Link
               href={'/user'}
-              className="flex items-center px-4 py-3 space-x-3 border border-gray-200 rounded-lg hover:border-[#3b9c3c] transition-all duration-300 group"
+              className="flex items-center px-4 py-3 space-x-3 border border-gray-200 rounded-lg hover:border-[#004e92] transition-all duration-300 group"
             >
-              <div className="bg-gray-100 p-1 rounded-lg group-hover:bg-[#d7f6d886] transition-all duration-300">
+              <div className="bg-gray-100 p-1 rounded-lg group-hover:bg-[#004e92] transition-all duration-300">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  className="size-6 text-gray-600 group-hover:text-[#3b9c3c] transition-all duration-300"
+                  className="size-6 text-gray-600 group-hover:text-white transition-all duration-300"
                 >
                   <path
                     stroke-linecap="round"
@@ -176,7 +176,7 @@ export default function Navigation() {
           </div>
           {/* click */}
           <button
-            className="inline-flex items-center justify-center whitespace-nowrap"
+            className="inline-flex items-center justify-center whitespace-nowrap bg-[#004e92] text-white"
             onClick={() => setBlock(!block)}
           >
             {block ? (
@@ -186,7 +186,7 @@ export default function Navigation() {
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                className="size-5 text-gray-900"
+                className="size-5"
               >
                 <path
                   stroke-linecap="round"
@@ -201,7 +201,7 @@ export default function Navigation() {
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                className="size-5 text-gray-900"
+                className="size-5"
               >
                 <path
                   stroke-linecap="round"
@@ -217,8 +217,8 @@ export default function Navigation() {
       {/* mobile navigation */}
       {block && (
         <div className="lg:hidden">
-          <div className="bg-purple-0 shadow-2xl rounded-2xl overflow-hidden ">
-            <div className="bg-[#09a744] flex items-center justify-between p-6">
+          <div className="bg-purple-0 shadow-2xl rounded-2xl overflow-hidden">
+            <div className="bg-[#004e92] flex items-center justify-between p-6">
               <div className="flex items-center space-x-4">
                 <Image
                   src={profile?.image || '/images/avater.png'}
@@ -244,17 +244,17 @@ export default function Navigation() {
               {/* profile page*/}
               <Link
                 href={'/user'}
-                className="flex items-center justify-between px-4 py-3 border border-gray-200 rounded-lg hover:border-[#3b9c3c] transition-all duration-300 group"
+                className="flex items-center justify-between px-4 py-3 border border-gray-200 rounded-lg hover:border-[#004e92] transition-all duration-300 group"
               >
                 <div className="flex items-center space-x-3">
-                  <div className="bg-gray-100 p-1 rounded-lg group-hover:bg-[#d7f6d886] transition-all duration-300">
+                  <div className="bg-gray-100 p-1 rounded-lg group-hover:bg-[#004e92] transition-all duration-300">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke-width="1.5"
                       stroke="currentColor"
-                      className="size-6 text-gray-600 group-hover:text-[#3b9c3c] transition-all duration-300"
+                      className="size-5 text-gray-600 group-hover:text-white transition-all duration-300"
                     >
                       <path
                         stroke-linecap="round"
@@ -279,7 +279,7 @@ export default function Navigation() {
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  className="size-4 text-[#3b9c3c] transition-all duration-300"
+                  className="size-4 text-[#004e92] transition-all duration-300"
                 >
                   <path
                     stroke-linecap="round"
@@ -291,17 +291,17 @@ export default function Navigation() {
               {/* orders page*/}
               <Link
                 href={'/user/orders'}
-                className="flex items-center justify-between px-4 py-3 space-x-3 border border-gray-200 rounded-lg hover:border-[#3b9c3c] transition-all duration-300 group"
+                className="flex items-center justify-between px-4 py-3 space-x-3 border border-gray-200 rounded-lg hover:border-[#004e92] transition-all duration-300 group"
               >
                 <div className="flex items-center space-x-3">
-                  <div className="bg-gray-100 p-1 rounded-lg group-hover:bg-[#d7f6d886] transition-all duration-300">
+                  <div className="bg-gray-100 p-1 rounded-lg group-hover:bg-[#004e92] transition-all duration-300">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke-width="1.5"
                       stroke="currentColor"
-                      className="size-6 text-gray-600 group-hover:text-[#3b9c3c] transition-all duration-300"
+                      className="size-5 text-gray-600 group-hover:text-white transition-all duration-300"
                     >
                       <path
                         stroke-linecap="round"
@@ -338,17 +338,17 @@ export default function Navigation() {
               {/* wishlist page*/}
               <Link
                 href={'/user'}
-                className="flex items-center justify-between px-4 py-3 space-x-3 border border-gray-200 rounded-lg hover:border-[#3b9c3c] transition-all duration-300 group"
+                className="flex items-center justify-between px-4 py-3 space-x-3 border border-gray-200 rounded-lg hover:border-[#004e92] transition-all duration-300 group"
               >
                 <div className="flex items-center space-x-3">
-                  <div className="bg-gray-100 p-1 rounded-lg group-hover:bg-[#d7f6d886] transition-all duration-300">
+                  <div className="bg-gray-100 p-1 rounded-lg group-hover:bg-[#004e92] transition-all duration-300">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke-width="1.5"
                       stroke="currentColor"
-                      className="size-6 text-gray-600 group-hover:text-[#3b9c3c] transition-all duration-300"
+                      className="size-5 text-gray-600 group-hover:text-white transition-all duration-300"
                     >
                       <path
                         stroke-linecap="round"
@@ -373,7 +373,7 @@ export default function Navigation() {
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  className="size-4 text-[#3b9c3c] transition-all duration-300"
+                  className="size-4 text-[#004e92] transition-all duration-300"
                 >
                   <path
                     stroke-linecap="round"

@@ -20,7 +20,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
     <div className="fixed inset-0 z-40">
       <div className="absolute inset-0 bg-black/50" onClick={handleClose} />
       <div
-        className={`absolute right-0 top-0 h-full w-full max-w-[500px] bg-white z-50 transform transition-transform duration-300 ease-[cubic-bezier(0.4,0,1,1)] overflow-y-auto scroll-auto ${visible ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`absolute right-0 top-0 h-full w-full max-w-[300px] sm:max-w-[500px] bg-white z-50 transform transition-transform duration-300 ease-[cubic-bezier(0.4,0,1,1)] overflow-y-auto scroll-auto ${visible ? 'translate-x-0' : 'translate-x-full'}`}
       >
         {/* header */}
         <div className="flex flex-col gap-1.5 p-4 font-semibold">
@@ -45,7 +45,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
             Update your personal information.
           </p>
         </div>
-        {/* form container div */}
+        {/* form container */}
         <div className="mt-5 pb-5">
           {/* form */}
           <form className="space-y-8">
@@ -66,7 +66,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
                     >
                       First Name
                     </label>
-                    <div className="bg-white txt-clr-primary p-2 rounded border border-[#e5e7eb] text-sm uppercase cursor-not-allowed mt-1">
+                    <div className="bg-white txt-clr-primary p-2 rounded border border-[#e5e7eb] text-sm capitalize cursor-not-allowed mt-1">
                       Pabicamz
                     </div>
                   </div>
@@ -80,7 +80,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
                     >
                       Last Name
                     </label>
-                    <div className="bg-white txt-clr-primary p-2 rounded border border-[#e5e7eb] text-sm uppercase cursor-not-allowed mt-1">
+                    <div className="bg-white txt-clr-primary p-2 rounded border border-[#e5e7eb] text-sm capitalize cursor-not-allowed mt-1">
                       Not provided
                     </div>
                   </div>
@@ -94,7 +94,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
                     >
                       Email
                     </label>
-                    <div className="bg-white txt-clr-primary p-2 rounded border border-[#e5e7eb] text-sm lowercase cursor-not-allowed mt-1">
+                    <div className="bg-white txt-clr-primary p-2 rounded border border-[#e5e7eb] text-sm lowercase cursor-not-allowed mt-1 break-words">
                       Pabicamz@gmail.com
                     </div>
                   </div>
@@ -137,7 +137,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
                       type="text"
                       name="firstName"
                       placeholder="Enter first name"
-                      className="w-full p-2 placeholder:text-sm border border-[#e5e7eb] rounded shadow-xs bg-transparent"
+                      className="w-full p-2 placeholder:text-sm border border-[#e5e7eb] rounded shadow-xs capitalize bg-transparent outline-none focus:border-gray-900"
                       autoComplete="new-firstName"
                     />
                     <p className="text-xs text-clr-secondary mt-1">
@@ -172,7 +172,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
                       type="text"
                       name="lastName"
                       placeholder="Enter last name"
-                      className="text-clr-primary w-full p-2 placeholder:text-sm border border-[#e5e7eb] rounded shadow-xs bg-transparent"
+                      className="text-clr-primary w-full p-2 placeholder:text-sm border border-[#e5e7eb] rounded shadow-xs capitalize bg-transparent outline-none focus:border-gray-900"
                       autoComplete="new-lastName"
                     />
                     <p className="text-xs text-clr-secondary mt-1">
@@ -215,7 +215,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
               </div>
             </div>
 
-            {/* Add Shipping Address */}
+            {/* Add Address */}
             <div className="space-y-4">
               {/* header */}
               <div className="flex flex-col gap-1.5 p-4 font-semibold">
@@ -258,8 +258,8 @@ export function EditProfile({ onClose }: EditProfileProps) {
                     <input
                       type="text"
                       name="address"
-                      placeholder="e.g., Banjul, Kanifing, Farato "
-                      className="w-full p-2 placeholder:text-sm border border-[#e5e7eb] rounded shadow-xs bg-transparent mt-1"
+                      placeholder="e.g., Brikama, Farato, Banjul "
+                      className="w-full p-2 placeholder:text-sm border border-[#e5e7eb] outline-none focus:border-gray-900 rounded shadow-xs bg-transparent mt-1"
                       autoComplete="new-address"
                     />
                   </div>
@@ -277,7 +277,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
                       type="tel"
                       name="phoneNumber"
                       placeholder="Enter phone number"
-                      className="w-full p-2 placeholder:text-sm border border-[#e5e7eb] rounded shadow-xs bg-transparent mt-1"
+                      className="w-full p-2 placeholder:text-sm border border-[#e5e7eb] outline-none focus:border-gray-900 rounded shadow-xs bg-transparent mt-1"
                       autoComplete="new-phoneNumber"
                     />
                   </div>
@@ -294,8 +294,8 @@ export function EditProfile({ onClose }: EditProfileProps) {
                     <input
                       type="text"
                       name="address"
-                      placeholder="Enter your street address (house number, street name)"
-                      className="w-full p-2 placeholder:text-sm border border-[#e5e7eb] rounded shadow-xs bg-transparent break-words mt-1"
+                      placeholder="Enter your street address (street name)"
+                      className="w-full p-2 placeholder:text-sm border border-[#e5e7eb] outline-none focus:border-gray-900 rounded shadow-xs bg-transparent break-words mt-1"
                       autoComplete="new-streetAddress"
                     />
                   </div>

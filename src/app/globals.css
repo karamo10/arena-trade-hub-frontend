@@ -84,8 +84,11 @@ button[type="submit"]:disabled, submit:disabled {
 
 
 .foot {
-    background: linear-gradient(to left, #00a44f, #009a64);
+    background: linear-gradient(to left, #004e92, #000428);
 }
+
+/* bg-gradient-to-l from-[#000428] to-[#004e92] */
+/* peer w-full border border-slate-400 bg-white/50 focus:border-indigo-900 in-focus:ring-indigo-900 rounded px-11 py-2 outline-none placeholder:text-sm placeholder:text-slate-800 */
 
 .loyouts {
     width: min(95%, 70rem);
@@ -108,6 +111,10 @@ button {
 
 
 :root {
+    /* bg-clr */
+    --bg-clr-primary: #ffffff;
+    --bg-clr-secondary-400: #004e92;
+    /* --bg-clr-secondary-500: #000428; */
 
     /* text-color */
     --txt-clr-500: #101828;
@@ -115,6 +122,10 @@ button {
 
     /* border color */
     --border-clr: #e5e7eb;
+}
+
+.bg-secondary {
+    background-color: var(--bg-clr-secondary-400);
 }
 
 /* text-gray-900 */
@@ -130,7 +141,6 @@ button {
 .border-col-secondary {
     color: var(--txt-clr-100);
 }
-
 
 
 

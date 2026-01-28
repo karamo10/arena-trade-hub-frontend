@@ -96,7 +96,7 @@ export default function RegisterPage() {
           <button
             type="submit"
             disabled={creatingUser}
-            className="flex items-center justify-between text-white font-semibold px-3 py-2 bg-gradient-to-l from-[#000428] to-[#004e92] hover:opacity-80 rounded cursor-pointer"
+            className="flex items-center justify-between text-white font-semibold px-3 py-2 bg-gradient-to-l from-[#004e92] to-[#000428] hover:opacity-80 rounded cursor-pointer"
           >
             Register
             <ArrowLongRightIcon className="w-5 h-5" />
