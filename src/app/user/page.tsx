@@ -27,9 +27,9 @@ export default function ProfilePage() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-6 bg-green-00 my-5 px-5 py-10 shadow-2xl rounded-md">
+    <div className="flex flex-col gap-6 bg-white my-7 px-5 py-10 shadow-xl rounded-xl">
       {/* first child */}
-      <div className="flex items-center justify-evenly bg-white p-6 shadow-lg rounded-md">
+      <div className="flex items-center justify-evenly bg-purple-00 p-6 shadow-lg rounded-lg">
         {/* member since */}
         <div className="flex items-center space-x-3 hidden">
           <div className="p-2 bg-blue-100 rounded-lg">
@@ -108,7 +108,7 @@ export default function ProfilePage() {
 
       {/* form div*/}
       <div className="shadow-lg rounded-md">
-        <form className="bg-white rounded-xl shadow-lg">
+        <form className="bg-red-00 rounded-lg shadow-lg">
           <div className="p-6 flex flex-col space-y-1.5">
             <div className="font-semibold flex items-center space-x-2">
               <svg
@@ -139,10 +139,10 @@ export default function ProfilePage() {
                 >
                   First Name
                 </label>
-                <p className="text-clr-primary bg-gray-50 p-2 rounded-md cursor-not-allowed capitalize break-words">
+                <p className="text-clr-primary text-sm font-medium bg-gray-50 px-3 py-2 rounded-md cursor-not-allowed capitalize break-words">
                   {profile?.first_name || 'John'}
                 </p>
-                <p className="text-xs text-gray-400 mt-1">(Read-only)</p>
+                <p className="text-xs text-gray-400 mt-1">Read-only</p>
               </div>
               {/* last name */}
               <div>
@@ -152,10 +152,10 @@ export default function ProfilePage() {
                 >
                   Last Name
                 </label>
-                <p className="text-clr-primary  bg-gray-50 p-2 rounded-md cursor-not-allowed capitalize break-words">
+                <p className="text-clr-primary text-sm font-medium  bg-gray-50 px-3 py-2 rounded-md cursor-not-allowed capitalize break-words">
                   {profile?.last_name || 'Not provided'}
                 </p>
-                <p className="text-xs text-gray-400 mt-1">(Read-only)</p>
+                <p className="text-xs text-gray-400 mt-1">Read-only</p>
               </div>
               {/* email */}
               <div>
@@ -165,10 +165,10 @@ export default function ProfilePage() {
                 >
                   Email
                 </label>
-                <p className="text-clr-primary  bg-gray-50 p-2 rounded-md cursor-not-allowed lowercase">
+                <p className="text-clr-primary text-sm font-medium bg-gray-50 px-3 py-2 rounded-md cursor-not-allowed lowercase">
                   {profile?.email}
                 </p>
-                <p className="text-xs text-gray-400 mt-1">(Read-only)</p>
+                <p className="text-xs text-gray-400 mt-1">Read-only</p>
               </div>
             </div>
           </div>

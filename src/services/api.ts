@@ -221,7 +221,7 @@ export async function getReadOnlyProfile(): Promise<ProfileReadOnly> {
 export async function updateProfile(
   formData: FormData,
 ): Promise<{ message: string }> {
-  const res = await fetch(`${API_URL}/api/profile`, {
+  const res = await fetch(`${API_URL}/api/profile/update`, {
     method: 'PATCH',
     headers: getAuthHeaders(),
     body: formData,

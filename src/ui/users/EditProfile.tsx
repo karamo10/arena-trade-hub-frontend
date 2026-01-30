@@ -1,15 +1,55 @@
-import { useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
+import { getFullProfile, updateProfile } from '@/services/api';
+import { FullProfile } from '@/types/user-profile-type';
+import handleAuthError from '@/lib/handleAuthError';
+import { toast } from 'react-toastify';
 
 interface EditProfileProps {
   onClose: () => void;
 }
 
 export function EditProfile({ onClose }: EditProfileProps) {
+  const [profile, setProfile] = useState<FullProfile | null>(null);
   const [visible, setVisible] = useState<boolean>(true);
+  const [saving, setSaving] = useState<boolean>(false);
 
   useEffect(() => {
     setVisible(true);
+
+    async function fetchFullProfile() {
+      try {
+        const res = await getFullProfile();
+        setProfile(res);
+      } catch (err) {
+        handleAuthError(err);
+        console.error(err);
+      }
+    }
+
+    fetchFullProfile();
   }, []);
+
+  const handleSave = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSaving(true);
+
+    if (!profile) return;
+    const fd = new FormData();
+    fd.append('first_name', profile.first_name)
+    fd.append('last_name', profile.last_name)
+    fd.append('address', profile.address || '')
+    fd.append('phone_number', profile.phone_number || '')
+    fd.append('street_address', profile.street_address || '')
+
+    try {
+      const res = await updateProfile(fd);
+      toast.success(res.message);
+      setSaving(false)
+    } catch (err) {
+      handleAuthError(err);
+      console.error(err);
+    }
+  }
 
   const handleClose = () => {
     setVisible(false);
@@ -23,7 +63,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
         className={`absolute right-0 top-0 h-full w-full max-w-[300px] sm:max-w-[500px] bg-white z-50 transform transition-transform duration-300 ease-[cubic-bezier(0.4,0,1,1)] overflow-y-auto scroll-auto ${visible ? 'translate-x-0' : 'translate-x-full'}`}
       >
         {/* header */}
-        <div className="flex flex-col gap-1.5 p-4 font-semibold">
+        <div className="flex flex-col gap-1.5 p-4">
           <h2 className="flex items-center space-x-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +71,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              className="size-5 text-gray-600"
+              className="size-5"
             >
               <path
                 stroke-linecap="round"
@@ -39,7 +79,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
                 d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
               />
             </svg>
-            <span className="text-sm">Edit Profile</span>
+            <span className="text-sm font-semibold">Edit Profile</span>
           </h2>
           <p className="text-sm text-clr-secondary font-normal break-words">
             Update your personal information.
@@ -48,10 +88,10 @@ export function EditProfile({ onClose }: EditProfileProps) {
         {/* form container */}
         <div className="mt-5 pb-5">
           {/* form */}
-          <form className="space-y-8">
+          <form className="space-y-8" onSubmit={handleSave}>
             {/* Account (Read-Only) */}
             <div className="space-y-4">
-              <div className="space-y-3 border border-[#e5e7eb] rounded-lg p-4 bg-gray-50">
+              <div className="space-y-3 border border-gray-200 rounded-lg p-4 bg-gray-50 shadow-xs">
                 {/* form header */}
                 <h3 className="text-clr-primary text-sm font-medium flex items-center">
                   <span className="w-2 h-2 bg-gray-400 rounded-full mr-2"></span>
@@ -66,8 +106,8 @@ export function EditProfile({ onClose }: EditProfileProps) {
                     >
                       First Name
                     </label>
-                    <div className="bg-white txt-clr-primary p-2 rounded border border-[#e5e7eb] text-sm capitalize cursor-not-allowed mt-1">
-                      Pabicamz
+                    <div className="bg-white text-clr-primary p-2 rounded border border-[#e5e7eb] text-sm capitalize cursor-not-allowed mt-1">
+                      { profile?.first_name || 'Not provided' }
                     </div>
                   </div>
                 </div>
@@ -80,8 +120,8 @@ export function EditProfile({ onClose }: EditProfileProps) {
                     >
                       Last Name
                     </label>
-                    <div className="bg-white txt-clr-primary p-2 rounded border border-[#e5e7eb] text-sm capitalize cursor-not-allowed mt-1">
-                      Not provided
+                    <div className="bg-white text-clr-primary p-2 rounded border border-[#e5e7eb] text-sm capitalize cursor-not-allowed mt-1">
+                      { profile?.last_name || 'Not provided' }
                     </div>
                   </div>
                 </div>
@@ -94,8 +134,8 @@ export function EditProfile({ onClose }: EditProfileProps) {
                     >
                       Email
                     </label>
-                    <div className="bg-white txt-clr-primary p-2 rounded border border-[#e5e7eb] text-sm lowercase cursor-not-allowed mt-1 break-words">
-                      Pabicamz@gmail.com
+                    <div className="bg-white text-clr-primary p-2 rounded border border-[#e5e7eb] text-sm lowercase cursor-not-allowed mt-1 break-words">
+                      { profile?.email || 'Notprovided@gmail.com' }
                     </div>
                   </div>
                 </div>
@@ -104,18 +144,18 @@ export function EditProfile({ onClose }: EditProfileProps) {
 
             {/* Additional Information (Editable) */}
             <div className="space-y-4">
-              <div className="space-y-3 border border-[#e5e7eb] rounded-lg p-4 bg-white">
+              <div className="space-y-3 border border-gray-200 rounded-lg p-4 bg-gray-50 shadow-xs">
                 {/* form header */}
                 <h3 className="text-sm font-medium flex items-center break-words">
                   <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                  Additional Information (Editable)
+                  Additional Info (Editable)
                 </h3>
                 {/* first name */}
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <label
                       htmlFor="firstName"
-                      className="text-clr-primary text-sm font-medium flex items-center gap-1"
+                      className="text-sm font-medium flex items-center gap-1"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -136,11 +176,13 @@ export function EditProfile({ onClose }: EditProfileProps) {
                     <input
                       type="text"
                       name="firstName"
+                      value={profile?.first_name || ''}
                       placeholder="Enter first name"
-                      className="w-full p-2 placeholder:text-sm border border-[#e5e7eb] rounded shadow-xs capitalize bg-transparent outline-none focus:border-gray-900"
+                      className="w-full px-3 py-2 text-sm placeholder:text-sm placeholder:text-gray-500 border border-gray-200 rounded shadow-xs capitalize bg-transparent outline-none focus:border-gray-900"
                       autoComplete="new-firstName"
+                      onChange={(e) => setProfile(prev => prev ? {...prev, first_name: e.target.value} : prev)}
                     />
-                    <p className="text-xs text-clr-secondary mt-1">
+                    <p className="text-xs text-clr-secondary mt-">
                       Override first name for display
                     </p>
                   </div>
@@ -150,7 +192,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
                   <div className="space-y-2">
                     <label
                       htmlFor="firstName"
-                      className="text-clr-primary text-sm font-medium flex items-center gap-1"
+                      className="text-sm font-medium flex items-center gap-1"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -171,55 +213,25 @@ export function EditProfile({ onClose }: EditProfileProps) {
                     <input
                       type="text"
                       name="lastName"
+                      value={profile?.last_name || ''}
                       placeholder="Enter last name"
-                      className="text-clr-primary w-full p-2 placeholder:text-sm border border-[#e5e7eb] rounded shadow-xs capitalize bg-transparent outline-none focus:border-gray-900"
+                      className="w-full px-3 py-2 text-sm placeholder:text-sm placeholder:text-gray-500 border border-gray-200 rounded shadow-xs capitalize bg-transparent outline-none focus:border-gray-900"
                       autoComplete="new-lastName"
+                      onChange={(e) => setProfile(prev => prev ? {...prev, last_name: e.target.value} : prev)}
                     />
-                    <p className="text-xs text-clr-secondary mt-1">
+                    <p className="text-xs text-clr-secondary">
                       Override last name for display
                     </p>
                   </div>
                 </div>
-                {/* phone number */}
-                {/* <div className="space-y-4">
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="phoneNumber"
-                      className="text-sm font-medium flex items-center gap-1"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        className="size-4"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"
-                        />
-                      </svg>
-                      <span>Phone Number</span>
-                    </label>
-                    <input
-                      type="tel"
-                      name="phoneNumber"
-                      placeholder="Enter phone number"
-                      className="w-full p-2 placeholder:text-sm border border-[#e5e7eb] rounded shadow-xs bg-transparent"
-                      autoComplete="new-phoneNumber"
-                    />
-                  </div>
-                </div> */}
               </div>
             </div>
 
             {/* Add Address */}
-            <div className="space-y-4">
+            <div className="space-y-2 border border-gray-200 rounded-lg bg-gray-50 shadow-xs">
               {/* header */}
-              <div className="flex flex-col gap-1.5 p-4 font-semibold">
-                <h2 className="text-clr-primary text-sm font-medium flex items-center space-x-1">
+              <div className="flex flex-col gap-1.5 px-4 pt-4 font-semibold">
+                <h2 className="text-sm font-medium flex items-center space-x-1">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -245,22 +257,21 @@ export function EditProfile({ onClose }: EditProfileProps) {
                   Add address to your account.
                 </p>
               </div>
-              <div className="bg-red-0 space-y-3 border border-[#e5e7eb] rounded-lg p-4 bg-white">
+              <div className="space-y-3 g px-4 pb-4 bg-red-00">
                 {/* address */}
                 <div className="space-y-4">
                   <div className="space-y-2">
-                    <label
-                      htmlFor="address"
-                      className="text-clr-primary text-sm font-medium"
-                    >
+                    <label htmlFor="address" className="text-sm font-medium">
                       Address
                     </label>
                     <input
                       type="text"
                       name="address"
+                      value={profile?.address || ''}
                       placeholder="e.g., Brikama, Farato, Banjul "
-                      className="w-full p-2 placeholder:text-sm border border-[#e5e7eb] outline-none focus:border-gray-900 rounded shadow-xs bg-transparent mt-1"
+                      className="w-full px-3 py-2 text-sm placeholder:text-sm border placeholder:text-gray-500 border-gray-200 outline-none focus:border-gray-900 rounded shadow-xs bg-transparent mt-1"
                       autoComplete="new-address"
+                      onChange={(e) => setProfile(prev => prev ? {...prev, address: e.target.value} : prev)}
                     />
                   </div>
                 </div>
@@ -276,9 +287,11 @@ export function EditProfile({ onClose }: EditProfileProps) {
                     <input
                       type="tel"
                       name="phoneNumber"
+                      value={profile?.phone_number || ''}
                       placeholder="Enter phone number"
-                      className="w-full p-2 placeholder:text-sm border border-[#e5e7eb] outline-none focus:border-gray-900 rounded shadow-xs bg-transparent mt-1"
+                      className="w-full px-3 py-2 text-sm placeholder:text-sm border placeholder:text-gray-500 border-gray-200 outline-none focus:border-gray-900 rounded shadow-xs bg-transparent mt-1"
                       autoComplete="new-phoneNumber"
+                      onChange={(e) => setProfile(prev => prev ? {...prev, phone_number: e.target.value} : prev)}
                     />
                   </div>
                 </div>
@@ -287,16 +300,18 @@ export function EditProfile({ onClose }: EditProfileProps) {
                   <div className="space-y-2">
                     <label
                       htmlFor="streetAddress"
-                      className="text-clr-primary text-sm font-medium"
+                      className="text-sm font-medium"
                     >
                       Street Address
                     </label>
                     <input
                       type="text"
-                      name="address"
+                      name="streetAddress"
+                      value={profile?.street_address || ''}
                       placeholder="Enter your street address (street name)"
-                      className="w-full p-2 placeholder:text-sm border border-[#e5e7eb] outline-none focus:border-gray-900 rounded shadow-xs bg-transparent break-words mt-1"
+                      className="w-full px-3 py-2 text-sm placeholder:text-sm placeholder:text-gray-500 border border-gray-200 outline-none focus:border-gray-900 rounded shadow-xs bg-transparent break-words mt-1"
                       autoComplete="new-streetAddress"
+                      onChange={(e) => setProfile(prev => prev ? {...prev, street_address: e.target.value} : prev)}
                     />
                   </div>
                 </div>
@@ -304,8 +319,10 @@ export function EditProfile({ onClose }: EditProfileProps) {
             </div>
 
             {/* Save changes button */}
-            <div className="bg-red-0 pt-6 border-t border-t-[#e5e7eb] px-1">
-              <button className="inline-flex items-center justify-center gap-2 bg-black w-full text-white text-sm hover:opacity-85 transition-all duration-200 cursor-pointer">
+            <div className="bg-red-0 pt-6 border-t border-t-gray-200 px-1">
+              <button className="inline-flex items-center justify-center gap-2 bg-black w-full text-white text-sm hover:opacity-85 transition-all duration-200 cursor-pointer"
+                type='submit'
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -321,7 +338,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
                   <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7"></path>
                   <path d="M7 3v4a1 1 0 0 0 1 1h7"></path>
                 </svg>
-                <span className="font-normal">Save Changes</span>
+                <span className="font-normal"> {saving ? 'Saving Changes...' : 'Save Changes'} </span>
               </button>
             </div>
           </form>

@@ -29,10 +29,10 @@ export default function Navigation() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 bg-amber-00">
       {/* desktop navigation */}
       <div className="hidden lg:block">
-        <div className="shadow-2xl rounded-2xl overflow-hidden ">
+        <div className="shadow-xl rounded-xl overflow-hidden ">
           <div className="bg-secondary flex items-center justify-between p-6">
             <div className="flex items-center space-x-4">
               <Image
@@ -82,7 +82,7 @@ export default function Navigation() {
               </div>
               {/*  */}
               <div className="flex flex-col">
-                <h4 className="text-clr-primarytext-sm font-medium capitalize">
+                <h4 className="text-clr-primary text-sm font-medium capitalize">
                   profile
                 </h4>
                 <p className="text-clr-secondary text-xs capitalize">
@@ -158,7 +158,7 @@ export default function Navigation() {
 
       {/* display bars */}
       <div className="block lg:hidden">
-        <div className="bg-white flex justify-between p-4 shadow-sm rounded-md">
+        <div className="bg-white flex justify-between p-4 shadow rounded-lg">
           <div className="flex items-center space-x-3">
             <Image
               src={profile?.image || '/images/avater.png'}
@@ -176,7 +176,7 @@ export default function Navigation() {
           </div>
           {/* click */}
           <button
-            className="inline-flex items-center justify-center whitespace-nowrap bg-[#004e92] text-white"
+            className="inline-flex items-center justify-center whitespace-nowrap text-clr-primary"
             onClick={() => setBlock(!block)}
           >
             {block ? (
@@ -217,7 +217,7 @@ export default function Navigation() {
       {/* mobile navigation */}
       {block && (
         <div className="lg:hidden">
-          <div className="bg-purple-0 shadow-2xl rounded-2xl overflow-hidden">
+          <div className="bg-purple-0 shadow-xl rounded-xl overflow-hidden">
             <div className="bg-[#004e92] flex items-center justify-between p-6">
               <div className="flex items-center space-x-4">
                 <Image
@@ -228,13 +228,13 @@ export default function Navigation() {
                   className="block object-cover rounded-full"
                 />
                 <div>
-                  <h3 className="font-bold text-white text-lg uppercase">
+                  {/* <h3 className="font-bold text-white text-sm uppercase">
                     {profile?.first_name}
-                  </h3>
-                  <p className="text-white/80 text-sm">{profile?.email}</p>
-                  <div className="flex items-center space-x-2">
+                  </h3> */}
+                  <p className="text-white/80 text-xs">{profile?.email}</p>
+                  <div className="flex items-center space-x-1">
                     <div className="w-2 h-2 bg-[#05df72] rounded-full"></div>
-                    <span className="text-white/80 text-sm">Active</span>
+                    <span className="text-white/80 text-xs">Active</span>
                   </div>
                 </div>
               </div>

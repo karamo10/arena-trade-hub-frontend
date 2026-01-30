@@ -4,7 +4,7 @@ export default function UserLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <section className="bg-red-0 loyouts">
+    <section className="bg-red-00 loyouts">
       {/* <p className="warn text-center text-xs my-1">
         ⚠️ This page is under development
       </p> */}

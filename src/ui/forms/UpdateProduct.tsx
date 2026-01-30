@@ -40,7 +40,7 @@ export default function UpdateProductForm({ product }: Props) {
       toast.success(res.message);
 
       setTimeout(() => {
-        router.push('/admin/updateProduct');
+        router.push('/admin/update-product');
         router.refresh();
       }, 2000);
     } catch (err) {

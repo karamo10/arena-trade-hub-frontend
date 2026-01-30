@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+
 h1 {
     color: #150e56;
     font-weight: 600;
@@ -111,6 +112,7 @@ button {
 
 
 :root {
+    --background: 0 0% 100%;
     /* bg-clr */
     --bg-clr-primary: #ffffff;
     --bg-clr-secondary-400: #004e92;
@@ -122,6 +124,10 @@ button {
 
     /* border color */
     --border-clr: #e5e7eb;
+}
+
+.background {
+    background-color: var(--background);
 }
 
 .bg-secondary {
@@ -138,7 +144,7 @@ button {
 }
 
 /* text-gray-500 */
-.border-col-secondary {
+.border-xl {
     color: var(--txt-clr-100);
 }
 

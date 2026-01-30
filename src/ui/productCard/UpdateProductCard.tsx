@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function UpdateProductCard({ product }: { product: Product }) {
     return (
-        <Link href={`/admin/updateProduct/${product.id}/update`} className="flex items-center flex-col md:flex-row py-1 bg-white shadow-sm rounded relative">
+        <Link href={`/admin/update-product/${product.id}/update`} className="flex items-center flex-col md:flex-row py-1 bg-white shadow-sm rounded relative">
              <div className="relative w-[100px] h-[100px] md:w-[120px] md:h-[120px] rounded">
                     <Image
                       src={product.image_url}
