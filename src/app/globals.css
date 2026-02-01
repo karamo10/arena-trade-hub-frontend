@@ -156,11 +156,15 @@ button {
     color: var(--border-clr);
 }
 
+
 .breadcrumb ol {
     display: flex;
     gap: 0.5rem;
     list-style: none;
     font-size: 0.9rem;
+    padding-block: 0.9rem;
+    padding-inline-start: 0.9rem;
+    /* background: #c3b2b2; */
 }
 
 .breadcrumb li::after {
@@ -175,10 +179,10 @@ button {
 
 .breadcrumb a {
     text-decoration: none;
-    color: #555;
+    font-weight: 600;
 }
 
 .breadcrumb span {
-    font-weight: 600;
-    color: #000;
+    /* font-weight: 600; */
+    color: #c69696;
 }

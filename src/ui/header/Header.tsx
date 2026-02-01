@@ -4,7 +4,7 @@ import Header from "./HeaderLinks";
 export default function Navigation() {
 
     return (
-        <header className="border-y-red-300">
+        <header>
             <Header />
             <NavBar />
         </header>

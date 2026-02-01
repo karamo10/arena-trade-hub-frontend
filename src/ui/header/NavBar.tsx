@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import NavLinks from './NavLinks';
+// import NavLinks from './NavLinks';
 import Link from 'next/link';
 import {
   ShoppingBagIcon,
@@ -14,7 +14,7 @@ export default function NavBar() {
   const [openMenu, setOpenMenu] = useState(false);
 
   return (
-    <nav className="bg-white shadow-sm">
+    <nav className="border border-[#004e92]">
       <div className="flex items-center justify-between px-5 md:px-[100px] h-[70px]">
         <Link href={'/'}>
           {' '}
@@ -55,7 +55,7 @@ export default function NavBar() {
           openMenu ? 'max-h-[250px] opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <NavLinks />
+        {/* <NavLinks /> */}
         <div className="flex flex-col items-start gap-3 text-sm mt-3">
           <div className=" flex items-center gap-2">
             <PhoneArrowDownLeftIcon className="w-5 h-5 icon" />

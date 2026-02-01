@@ -123,7 +123,7 @@ export default function Navigation() {
             </Link>
             {/* wishlists page*/}
             <Link
-              href={'/user'}
+              href={'/wishlist'}
               className="flex items-center px-4 py-3 space-x-3 border border-gray-200 rounded-lg hover:border-[#004e92] transition-all duration-300 group"
             >
               <div className="bg-gray-100 p-1 rounded-lg group-hover:bg-[#004e92] transition-all duration-300">
@@ -337,7 +337,7 @@ export default function Navigation() {
               </Link>
               {/* wishlist page*/}
               <Link
-                href={'/user'}
+                href={'/wishlist'}
                 className="flex items-center justify-between px-4 py-3 space-x-3 border border-gray-200 rounded-lg hover:border-[#004e92] transition-all duration-300 group"
               >
                 <div className="flex items-center space-x-3">
