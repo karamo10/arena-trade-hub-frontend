@@ -107,7 +107,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
                       First Name
                     </label>
                     <div className="bg-white text-clr-primary p-2 rounded border border-[#e5e7eb] text-sm capitalize cursor-not-allowed mt-1">
-                      { profile?.first_name || 'Not provided' }
+                      {profile?.first_name || 'Not provided'}
                     </div>
                   </div>
                 </div>
@@ -121,7 +121,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
                       Last Name
                     </label>
                     <div className="bg-white text-clr-primary p-2 rounded border border-[#e5e7eb] text-sm capitalize cursor-not-allowed mt-1">
-                      { profile?.last_name || 'Not provided' }
+                      {profile?.last_name || 'Not provided'}
                     </div>
                   </div>
                 </div>
@@ -135,7 +135,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
                       Email
                     </label>
                     <div className="bg-white text-clr-primary p-2 rounded border border-[#e5e7eb] text-sm lowercase cursor-not-allowed mt-1 break-words">
-                      { profile?.email || 'Notprovided@gmail.com' }
+                      {profile?.email || 'Notprovided@gmail.com'}
                     </div>
                   </div>
                 </div>
@@ -180,7 +180,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
                       placeholder="Enter first name"
                       className="w-full px-3 py-2 text-sm placeholder:text-sm placeholder:text-gray-500 border border-gray-200 rounded shadow-xs capitalize bg-transparent outline-none focus:border-gray-900"
                       autoComplete="new-firstName"
-                      onChange={(e) => setProfile(prev => prev ? {...prev, first_name: e.target.value} : prev)}
+                      onChange={(e) => setProfile(prev => prev ? { ...prev, first_name: e.target.value } : prev)}
                     />
                     <p className="text-xs text-clr-secondary mt-">
                       Override first name for display
@@ -217,7 +217,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
                       placeholder="Enter last name"
                       className="w-full px-3 py-2 text-sm placeholder:text-sm placeholder:text-gray-500 border border-gray-200 rounded shadow-xs capitalize bg-transparent outline-none focus:border-gray-900"
                       autoComplete="new-lastName"
-                      onChange={(e) => setProfile(prev => prev ? {...prev, last_name: e.target.value} : prev)}
+                      onChange={(e) => setProfile(prev => prev ? { ...prev, last_name: e.target.value } : prev)}
                     />
                     <p className="text-xs text-clr-secondary">
                       Override last name for display
@@ -271,7 +271,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
                       placeholder="e.g., Brikama, Farato, Banjul "
                       className="w-full px-3 py-2 text-sm placeholder:text-sm border placeholder:text-gray-500 border-gray-200 outline-none focus:border-gray-900 rounded shadow-xs bg-transparent mt-1"
                       autoComplete="new-address"
-                      onChange={(e) => setProfile(prev => prev ? {...prev, address: e.target.value} : prev)}
+                      onChange={(e) => setProfile(prev => prev ? { ...prev, address: e.target.value } : prev)}
                     />
                   </div>
                 </div>
@@ -291,7 +291,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
                       placeholder="Enter phone number"
                       className="w-full px-3 py-2 text-sm placeholder:text-sm border placeholder:text-gray-500 border-gray-200 outline-none focus:border-gray-900 rounded shadow-xs bg-transparent mt-1"
                       autoComplete="new-phoneNumber"
-                      onChange={(e) => setProfile(prev => prev ? {...prev, phone_number: e.target.value} : prev)}
+                      onChange={(e) => setProfile(prev => prev ? { ...prev, phone_number: e.target.value } : prev)}
                     />
                   </div>
                 </div>
@@ -311,7 +311,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
                       placeholder="Enter your street address (street name)"
                       className="w-full px-3 py-2 text-sm placeholder:text-sm placeholder:text-gray-500 border border-gray-200 outline-none focus:border-gray-900 rounded shadow-xs bg-transparent break-words mt-1"
                       autoComplete="new-streetAddress"
-                      onChange={(e) => setProfile(prev => prev ? {...prev, street_address: e.target.value} : prev)}
+                      onChange={(e) => setProfile(prev => prev ? { ...prev, street_address: e.target.value } : prev)}
                     />
                   </div>
                 </div>

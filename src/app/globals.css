@@ -155,3 +155,30 @@ button {
 .border-clr-100 {
     color: var(--border-clr);
 }
+
+.breadcrumb ol {
+    display: flex;
+    gap: 0.5rem;
+    list-style: none;
+    font-size: 0.9rem;
+}
+
+.breadcrumb li::after {
+    content: "/";
+    margin-left: 0.5rem;
+    opacity: 0.6;
+}
+
+.breadcrumb li:last-child::after {
+    content: "";
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color: #555;
+}
+
+.breadcrumb span {
+    font-weight: 600;
+    color: #000;
+}
