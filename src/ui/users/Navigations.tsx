@@ -38,9 +38,9 @@ export default function Navigation() {
               <Image
                 src={profile?.image || '/images/avater.png'}
                 alt={'profile image'}
-                width={45}
-                height={45}
-                className="block object-cover rounded-full"
+                width={100}
+                height={100}
+                className="block object-cover w-12 h-12 rounded-full"
               />
               <div>
                 <h3 className="font-bold text-white text-lg">
@@ -55,6 +55,7 @@ export default function Navigation() {
                 <span className="text-white/80 text-sm">Active</span>
               </div>
               <LogoutButton />
+               {/* <button onClick={() =>logout()}>logout</button> */}
             </div>
           </div>
           {/* Three Navigation */}

@@ -6,6 +6,7 @@ export type User = {
     last_name: string,
     email: string,
     role: UserRole
+    image?: string
 }
 
 export type Register = {

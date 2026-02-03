@@ -1,6 +1,6 @@
 import { Jost } from "next/font/google";
 import "./globals.css";
-import Navigation from "@/ui/header/Header";
+import Header from "@/ui/Header/Header";
 import Footer from "@/ui/footer/Footer";
 
 const jost = Jost({
@@ -20,7 +20,7 @@ export default function RootLayout({
       <body
         className={`${jost.variable} antialiased bg-[#fff] min-h-screen flex flex-col`}
       >
-        <Navigation />
+        <Header />
         <section className="flex-1">
           {children}
         </section>

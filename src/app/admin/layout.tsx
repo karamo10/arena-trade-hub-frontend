@@ -6,24 +6,28 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { PencilSquareIcon, PlusCircleIcon, TrashIcon, UserCircleIcon } from '@heroicons/react/16/solid';
 import { ToastContainer } from 'react-toastify';
+import { User } from '@/types/user-type';
+import Image from 'next/image';
 
 export default function AdminLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   useAuth();
-  const [userName, setUserName] = useState<string | null>(null);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const userJson = localStorage.getItem('user');
     if (userJson) {
       try {
         const parse = JSON.parse(userJson);
-        setUserName(parse.name ?? null);
+        setUser(parse?.image ?? null);
       } catch {
-        setUserName(null);
+        setUser(null);
       }
+      console.log(userJson);
     }
   }, []);
+
 
   return (
     <>
@@ -37,7 +41,8 @@ export default function AdminLayout({
             </h2>
             <div className="flex items-center flex-col">
               {/* <UserCircleIcon className="w-5 h-5" /> */}
-              <p className="font-medium">{userName ? `Welcome, ${userName}` : 'Admin'}</p>
+              <p className="font-medium">{user ? `Welcome, ${user}` : 'Admins'}</p>
+              <Image src={user?.image ?? '/images/avater.png'} alt={'profile'} width={35} height={35} />
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 py-[15px] gap-4 px-4">

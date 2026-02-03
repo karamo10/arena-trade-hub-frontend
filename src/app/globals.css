@@ -121,6 +121,7 @@ button {
     /* text-color */
     --txt-clr-500: #101828;
     --txt-clr-200: #6a7282;
+    /* #6b7280 */
 
     /* border color */
     --border-clr: #e5e7eb;
@@ -147,6 +148,7 @@ button {
 .border-xl {
     color: var(--txt-clr-100);
 }
+
 
 
 
@@ -186,3 +188,4 @@ button {
     /* font-weight: 600; */
     color: #c69696;
 }
+

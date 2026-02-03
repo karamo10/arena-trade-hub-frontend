@@ -8,10 +8,16 @@ import {
   PhoneArrowDownLeftIcon,
   InboxArrowDownIcon,
 } from '@heroicons/react/20/solid';
+import { User } from '@/types/user-type';
 import { useState } from 'react';
 
 export default function NavBar() {
   const [openMenu, setOpenMenu] = useState(false);
+  // const [user, setUser] = useState<User | null>(null);
+  const token: string | null = localStorage.getItem('token');
+
+  const storedUser = localStorage.getItem('user');
+  const user: User | null = storedUser ? JSON.parse(storedUser) : null;
 
   return (
     <nav className="border border-[#004e92]">
@@ -31,9 +37,22 @@ export default function NavBar() {
         </div> */}
         <div className="hidden md:block">
           <div className="flex justify-center items-center gap-4">
-            <Link href={'/login'} className="text-lg font-semibold login">
-              Login
-            </Link>
+            <div></div>
+            {!token ? (
+              <Link href={'/login'} className="text-lg font-semibold login">
+                Login
+              </Link>
+            ) : (
+              <Link href={'/user'} className="border border-gray-300 rounded-full">
+                <Image
+                  width={32}
+                  height={32}
+                    src={user?.image ?? '/images/avater.png'}
+                    className="object-cover w-[2rem] h-[2rem] rounded-full"
+                  alt="profile image"
+                />
+              </Link>
+            )}
             {/* <Link href={'/register'} className="font-medium">
               Register
             </Link> */}
