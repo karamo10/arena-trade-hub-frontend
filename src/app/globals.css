@@ -84,9 +84,9 @@ button[type="submit"]:disabled, submit:disabled {
 }
 
 
-.foot {
+/* .foot {
     background: linear-gradient(to left, #004e92, #000428);
-}
+} */
 
 /* bg-gradient-to-l from-[#000428] to-[#004e92] */
 /* peer w-full border border-slate-400 bg-white/50 focus:border-indigo-900 in-focus:ring-indigo-900 rounded px-11 py-2 outline-none placeholder:text-sm placeholder:text-slate-800 */
@@ -101,14 +101,14 @@ button {
     padding-inline: 12px;
     padding-block: 6px;
     border-radius: 8px;
-    font-weight: 600;
+    /* font-weight: 500; */
     cursor: pointer;
 }
 
-.me {
+/* .me {
     color: #e5ebe828;
     color: #d7f6d886;
-}
+} */
 
 
 :root {

@@ -36,7 +36,7 @@ export default function Navigation() {
           <div className="bg-secondary flex items-center justify-between p-6">
             <div className="flex items-center space-x-4">
               <Image
-                src={profile?.image || '/images/avater.png'}
+                src={profile?.image || '/images/avatar.gif'}
                 alt={'profile image'}
                 width={100}
                 height={100}
@@ -162,11 +162,11 @@ export default function Navigation() {
         <div className="bg-white flex justify-between p-4 shadow rounded-lg">
           <div className="flex items-center space-x-3">
             <Image
-              src={profile?.image || '/images/avater.png'}
+              src={profile?.image || '/images/avatar.gif'}
               alt={'user avatar'}
               width={30}
               height={30}
-              className="object-cover border border-gray-200 rounded-full"
+              className="object-cover rounded-full"
             />
             <div>
               <h3 className="font-semibold uppercase">{profile?.first_name}</h3>

@@ -1,7 +1,8 @@
-import { FormEvent, useEffect, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import { getFullProfile, updateProfile } from '@/services/api';
 import { FullProfile } from '@/types/user-profile-type';
 import handleAuthError from '@/lib/handleAuthError';
+import Image from 'next/image';
 import { toast } from 'react-toastify';
 
 interface EditProfileProps {
@@ -10,24 +11,32 @@ interface EditProfileProps {
 
 export function EditProfile({ onClose }: EditProfileProps) {
   const [profile, setProfile] = useState<FullProfile | null>(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const [visible, setVisible] = useState<boolean>(true);
   const [saving, setSaving] = useState<boolean>(false);
+  const [upload, setUpload] = useState(false);
+
+  async function fetchFullProfile() {
+    try {
+      const res = await getFullProfile();
+      setProfile(res);
+    } catch (err) {
+      handleAuthError(err);
+      console.error(err);
+    }
+  }
 
   useEffect(() => {
     setVisible(true);
 
-    async function fetchFullProfile() {
-      try {
-        const res = await getFullProfile();
-        setProfile(res);
-      } catch (err) {
-        handleAuthError(err);
-        console.error(err);
-      }
-    }
-
     fetchFullProfile();
   }, []);
+
+  const handleImgChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) return;
+    const file = e.target.files[0];
+    setImageFile(file);
+  };
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,21 +44,26 @@ export function EditProfile({ onClose }: EditProfileProps) {
 
     if (!profile) return;
     const fd = new FormData();
-    fd.append('first_name', profile.first_name)
-    fd.append('last_name', profile.last_name)
-    fd.append('address', profile.address || '')
-    fd.append('phone_number', profile.phone_number || '')
-    fd.append('street_address', profile.street_address || '')
+    fd.append('first_name', profile.first_name);
+    fd.append('last_name', profile.last_name);
+    fd.append('address', profile.address || '');
+    fd.append('phone_number', profile.phone_number || '');
+    fd.append('street_address', profile.street_address || '');
+
+    if (imageFile) {
+      fd.append('image', imageFile);
+    }
 
     try {
       const res = await updateProfile(fd);
       toast.success(res.message);
-      setSaving(false)
+      fetchFullProfile();
+      setSaving(false);
     } catch (err) {
       handleAuthError(err);
       console.error(err);
     }
-  }
+  };
 
   const handleClose = () => {
     setVisible(false);
@@ -143,6 +157,51 @@ export function EditProfile({ onClose }: EditProfileProps) {
             </div>
 
             {/* Additional Information (Editable) */}
+            <div className="">
+              <div className="bg-gray-50 border border-gray-200 flex items-center p-4 space-x-4">
+                <Image
+                  src={profile?.image || '/images/avatar.gif'}
+                  alt="profile image"
+                  width={100}
+                  height={100}
+                  className="object-cover rounded-full h-10 w-10  cursor-zoom-in"
+                />
+                <div className="space-y-2 bg-amber-00">
+                  {!upload && (
+                    <button
+                      onClick={() => setUpload(true)}
+                      className="text-sm text-clr-primary font-normal px-3 py-2 border border-gray-200 shadow-xs hover:bg-white transition-all duration-200 cursor-pointer"
+                    >
+                      Upload new picture
+                    </button>
+                  )}
+                  {upload && (
+                    <fieldset className="flex flex-col space-y-2">
+                      <input
+                        type="file"
+                        name="image"
+                        className="text-sm"
+                        accept="image/*"
+                        onChange={handleImgChange}
+                      />
+                      <span className="text-xs text-clr-secondary">
+                        PG, GIF or PNG. Max size of 800K
+                      </span>
+                    </fieldset>
+                  )}
+
+                  {upload && (
+                    <button
+                      onClick={() => setUpload(false)}
+                      className="text-xs text-clr-secondary border border-gray-200 hover:bg-white transition-all duration-200 shadow-xs"
+                    >
+                      Cancel
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
+
             <div className="space-y-4">
               <div className="space-y-3 border border-gray-200 rounded-lg p-4 bg-gray-50 shadow-xs">
                 {/* form header */}
@@ -180,7 +239,11 @@ export function EditProfile({ onClose }: EditProfileProps) {
                       placeholder="Enter first name"
                       className="w-full px-3 py-2 text-sm placeholder:text-sm placeholder:text-gray-500 border border-gray-200 rounded shadow-xs capitalize bg-transparent outline-none focus:border-gray-900"
                       autoComplete="new-firstName"
-                      onChange={(e) => setProfile(prev => prev ? { ...prev, first_name: e.target.value } : prev)}
+                      onChange={(e) =>
+                        setProfile((prev) =>
+                          prev ? { ...prev, first_name: e.target.value } : prev,
+                        )
+                      }
                     />
                     <p className="text-xs text-clr-secondary mt-">
                       Override first name for display
@@ -217,7 +280,11 @@ export function EditProfile({ onClose }: EditProfileProps) {
                       placeholder="Enter last name"
                       className="w-full px-3 py-2 text-sm placeholder:text-sm placeholder:text-gray-500 border border-gray-200 rounded shadow-xs capitalize bg-transparent outline-none focus:border-gray-900"
                       autoComplete="new-lastName"
-                      onChange={(e) => setProfile(prev => prev ? { ...prev, last_name: e.target.value } : prev)}
+                      onChange={(e) =>
+                        setProfile((prev) =>
+                          prev ? { ...prev, last_name: e.target.value } : prev,
+                        )
+                      }
                     />
                     <p className="text-xs text-clr-secondary">
                       Override last name for display
@@ -271,7 +338,11 @@ export function EditProfile({ onClose }: EditProfileProps) {
                       placeholder="e.g., Brikama, Farato, Banjul "
                       className="w-full px-3 py-2 text-sm placeholder:text-sm border placeholder:text-gray-500 border-gray-200 outline-none focus:border-gray-900 rounded shadow-xs bg-transparent mt-1"
                       autoComplete="new-address"
-                      onChange={(e) => setProfile(prev => prev ? { ...prev, address: e.target.value } : prev)}
+                      onChange={(e) =>
+                        setProfile((prev) =>
+                          prev ? { ...prev, address: e.target.value } : prev,
+                        )
+                      }
                     />
                   </div>
                 </div>
@@ -291,7 +362,13 @@ export function EditProfile({ onClose }: EditProfileProps) {
                       placeholder="Enter phone number"
                       className="w-full px-3 py-2 text-sm placeholder:text-sm border placeholder:text-gray-500 border-gray-200 outline-none focus:border-gray-900 rounded shadow-xs bg-transparent mt-1"
                       autoComplete="new-phoneNumber"
-                      onChange={(e) => setProfile(prev => prev ? { ...prev, phone_number: e.target.value } : prev)}
+                      onChange={(e) =>
+                        setProfile((prev) =>
+                          prev
+                            ? { ...prev, phone_number: e.target.value }
+                            : prev,
+                        )
+                      }
                     />
                   </div>
                 </div>
@@ -311,7 +388,13 @@ export function EditProfile({ onClose }: EditProfileProps) {
                       placeholder="Enter your street address (street name)"
                       className="w-full px-3 py-2 text-sm placeholder:text-sm placeholder:text-gray-500 border border-gray-200 outline-none focus:border-gray-900 rounded shadow-xs bg-transparent break-words mt-1"
                       autoComplete="new-streetAddress"
-                      onChange={(e) => setProfile(prev => prev ? { ...prev, street_address: e.target.value } : prev)}
+                      onChange={(e) =>
+                        setProfile((prev) =>
+                          prev
+                            ? { ...prev, street_address: e.target.value }
+                            : prev,
+                        )
+                      }
                     />
                   </div>
                 </div>
@@ -320,8 +403,9 @@ export function EditProfile({ onClose }: EditProfileProps) {
 
             {/* Save changes button */}
             <div className="bg-red-0 pt-6 border-t border-t-gray-200 px-1">
-              <button className="inline-flex items-center justify-center gap-2 bg-black w-full text-white text-sm hover:opacity-85 transition-all duration-200 cursor-pointer"
-                type='submit'
+              <button
+                className="inline-flex items-center justify-center gap-2 bg-black w-full text-white text-sm hover:opacity-85 transition-all duration-200 cursor-pointer"
+                type="submit"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -338,7 +422,10 @@ export function EditProfile({ onClose }: EditProfileProps) {
                   <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7"></path>
                   <path d="M7 3v4a1 1 0 0 0 1 1h7"></path>
                 </svg>
-                <span className="font-normal"> {saving ? 'Saving Changes...' : 'Save Changes'} </span>
+                <span className="font-normal">
+                  {' '}
+                  {saving ? 'Saving Changes...' : 'Save Changes'}{' '}
+                </span>
               </button>
             </div>
           </form>

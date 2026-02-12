@@ -14,10 +14,10 @@ export default function Error({
   }, [error])
  
   return (
-    <div className="flex flex-col items-center justify-center h-96 ">
-      <h2 className="font-medium">Something went wrong!</h2>
+    <div className="flex flex-col space-y-3 items-center justify-center h-[50vh]">
+      <p className="text-sm text-clr-primary">Something went wrong!</p>
           <button
-              className="btn-bg py-1 px-2 font-medium rounded cursor-pointer"
+              className="bg-[#004e92] font-normal text-white text-sm cursor-pointer"
         onClick={
           () => reset()
         }

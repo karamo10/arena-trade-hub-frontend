@@ -8,6 +8,7 @@ import PasswordInput from '@/ui/inputs/PasswordInput';
 import {toast} from 'react-toastify'
 import { AtSymbolIcon } from '@heroicons/react/16/solid';
 import { ArrowLongRightIcon } from '@heroicons/react/24/outline';
+import Breadcrumbs from '@/ui/breadcrumbs/BreadCrumbs';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -42,7 +43,8 @@ export default function LoginPage() {
   };
 
   return (
-    <section className="min-h-screen flex justify-center">
+    <section className="">
+      <Breadcrumbs />
       <div className="w-full p-2 py-10">
          <form
         onSubmit={handleSubmit}

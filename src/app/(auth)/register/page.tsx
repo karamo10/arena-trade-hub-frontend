@@ -6,7 +6,8 @@ import { register } from '@/services/api';
 import PasswordInput from '@/ui/inputs/PasswordInput';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
-import { AtSymbolIcon, UserCircleIcon, ArrowLongRightIcon, ExclamationCircleIcon} from '@heroicons/react/16/solid';
+import { AtSymbolIcon, UserCircleIcon, ArrowLongRightIcon, ExclamationCircleIcon } from '@heroicons/react/16/solid';
+import Breadcrumbs from '@/ui/breadcrumbs/BreadCrumbs';
 
 
 export default function RegisterPage() {
@@ -36,7 +37,8 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex justify-center">
+    <div className="">
+      <Breadcrumbs />
       <div className="w-full px-2 py-10">
         <form
           onSubmit={handleSubmit}

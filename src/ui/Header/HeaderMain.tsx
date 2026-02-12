@@ -4,13 +4,24 @@ import Container from '../layout/Container';
 import Link from 'next/link';
 import Image from 'next/image';
 import { User } from '@/types/user-type';
-import { logout } from '@/utils/auth';
+import { useEffect, useState } from 'react';
+// import { logout } from '@/utils/auth';
 
 export default function HeaderMain() {
-  const token = localStorage.getItem('token');
+  const [token, setToken] = useState<String | null>(null);
+  const [user, setUser] = useState<User | null>(null);
 
-  const storedUser = localStorage.getItem('user');
-  const user: User | null = storedUser ? JSON.parse(storedUser) : null;
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    const storedUser = localStorage.getItem('user');
+
+    setToken(storedToken);
+    setUser(storedUser ? JSON.parse(storedUser) : null);
+  }, []);
+  // const token = localStorage.getItem('token');
+
+  // const storedUser = localStorage.getItem('user');
+  // const user: User | null = storedUser ? JSON.parse(storedUser) : null;
 
   return (
     <div className="w-full bg-white py-3 lg:py-4 border-b border-b-[#e5e7eb]">
@@ -97,7 +108,7 @@ export default function HeaderMain() {
                 </svg>
               </Link>
               {/* logout */}
-              <button onClick={() =>logout()}>logout</button>
+              {/* <button onClick={() =>logout()}>logout</button> */}
               {/* login & register & avater div */}
               <div>
                 {!token ? (
@@ -116,25 +127,29 @@ export default function HeaderMain() {
                     </Link>
                   </div>
                 ) : (
-                  <div className="group flex items-center space-x-2 border px-3 py-2 rounded-xl border-[#004e92] bg-blue-200/20 cursor-pointer transition-colors duration-200">
+                  <Link
+                    href={'/user'}
+                    className="group flex items-center space-x-2 border px-3 py-2 rounded-xl border-[#004e92] bg-blue-200/20 cursor-pointer transition-colors duration-200"
+                  >
                     <div className="relative">
                       <Image
-                        src={user?.image || '/images/avater.png'}
-                        alt={'avater'}
+                        src={user?.image ?? '/images/avatar.gif'}
+                        alt="profile image"
                         width={100}
                         height={100}
-                        className="w-9 h-9 border-2 border-[#004e92] rounded-full ring-2 ring-white shadow-sm transition-colors duration-200"
-                      />
+                        className="w-9 h-9 rounded-full ring-2 ring-white shadow-sm transition-colors duration-200"
+                        />
+                       
                       {/* active icon */}
                       <div className="w-3 h-3 bg-green-500 rounded-full p-1 absolute bottom-0 -right-0.5 border-2 border-white shadow-white ring ring-green-100"></div>
-                    </div>
+                      </div>
                     <div className="flex flex-col">
-                      <span className="text-sm font-semibold text-[#004e92] transition-colors duration-200 capitalize">
+                      <span className="text-sm font-semibold transition-colors duration-200 capitalize">
                         {user?.first_name}
                       </span>
                       <span className="text-xs font-light">My Account</span>
                     </div>
-                  </div>
+                  </Link>
                 )}
               </div>
             </div>
