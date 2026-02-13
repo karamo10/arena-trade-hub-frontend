@@ -19,10 +19,19 @@ async function request(endpoint: string, options: RequestInit = {}) {
     ...options,
   });
 
-  if (!res.ok) {
-    throw new Error(`API error ${res.status} ${res.statusText}`);
+  let data;
+  try {
+    data = await res.json();
+  } catch {
+    data = null;
   }
-  return res.json();
+
+  if (!res.ok) {
+    console.log('Backend Error:', data); // for debug
+    throw new Error(data?.message || `API error ${res.status}`);
+  }
+  
+  return data;
 }
 
 // Header Helper
