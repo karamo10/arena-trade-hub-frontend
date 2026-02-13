@@ -140,7 +140,7 @@ export default function ProfilePage() {
                   First Name
                 </label>
                 <p className="text-clr-primary text-sm font-medium bg-gray-50 px-3 py-2 rounded-md cursor-not-allowed capitalize break-words">
-                  {profile?.first_name || 'John'}
+                  {profile?.first_name || 'loading...'}
                 </p>
                 <p className="text-xs text-gray-400 mt-1">Read-only</p>
               </div>

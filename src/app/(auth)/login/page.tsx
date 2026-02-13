@@ -41,10 +41,10 @@ export default function LoginPage() {
     // console.log(form);
     setUserLogging(false);
   };
-
+// flex flex-col gap-6 w-[100%] max-w-[500px] max-h-[325px] mx-auto py-8 px-7 bg-white rounded-lg border border-slate-300 form
   return (
-    <section className="">
-      <Breadcrumbs />
+    <section className="login-page flex justify-center items-center flex-col w-full min-h-screen bg-gradient-to-l from-[#004e92] to-[#000428]">
+      {/* <Breadcrumbs /> */}
       <div className="w-full p-2 py-10">
          <form
         onSubmit={handleSubmit}

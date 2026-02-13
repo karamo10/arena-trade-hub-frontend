@@ -6,15 +6,16 @@ import { register } from '@/services/api';
 import PasswordInput from '@/ui/inputs/PasswordInput';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
-import { AtSymbolIcon, UserCircleIcon, ArrowLongRightIcon, ExclamationCircleIcon } from '@heroicons/react/16/solid';
-import Breadcrumbs from '@/ui/breadcrumbs/BreadCrumbs';
+import { AtSymbolIcon, UserCircleIcon, ArrowLongRightIcon } from '@heroicons/react/16/solid';
+import handleAuthError from '@/lib/handleAuthError';
+// import Breadcrumbs from '@/ui/breadcrumbs/BreadCrumbs';
 
 
 export default function RegisterPage() {
   const router = useRouter();
   const [form, setForm] = useState({ first_name: '', last_name: '', email: '', password: '' });
   const [creatingUser, setCreatingUser] = useState(false);
-  const [erroMessage, setErroMessage] = useState(false);
+  // const [erroMessage, setErroMessage] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -28,8 +29,11 @@ export default function RegisterPage() {
       const response = await register(form);
       // console.log('Registered', response);
       router.push('/login');
-    } catch (err) {
-      setErroMessage(true);
+    } catch (err:any) {
+      console.log('FULL ERROR:', err);  
+      console.log("SERVER RESPONSE:", err.response);
+      handleAuthError(err)
+      // setErroMessage(true);
       toast.error('Registration Failed');
       console.error(err);
     }
@@ -37,14 +41,14 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="">
-      <Breadcrumbs />
+    <div className="login-page flex justify-center items-center flex-col w-full min-h-[100vh] bg-gradient-to-l from-[#004e92] to-[#000428]">
+      {/* <Breadcrumbs /> */}
       <div className="w-full px-2 py-10">
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col gap-6 w-[100%] max-w-[500px] max-h-[400px] mx-auto py-8 px-7 bg-white rounded-lg border border-slate-300 form"
+          className="flex flex-col gap-6 w-[100%] max-w-[500px] min-h-[300px] mx-auto py-8 px-7 bg-white rounded-lg border border-slate-300 form"
         >
-          <h2 className="text-center text-lg font-medium">Create an account</h2>
+          <h2 className="text-center text-2xl font-medium capitalize">Create account</h2>
 
           <div className="relative">
             <input
@@ -104,16 +108,15 @@ export default function RegisterPage() {
             <ArrowLongRightIcon className="w-5 h-5" />
           </button>
 
-          <div className="flex items-center gap-1">
+          {/* <div className="flex items-center gap-1">
             {erroMessage && (
             <>
               <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
               <p className="text-sm text-red-500">{"Something went wrong!"}</p>
             </>
           )}
-          </div>
-        </form>
-        <div className="flex justify-center mt-8">
+          </div> */}
+           <div className="flex justify-center ">
           <p className="text-[1rem] font-light">
             Already have and account?{' '}
             <Link href={'/login'} className="font-medium underline text-[#000428] hover:opacity-80">
@@ -121,6 +124,15 @@ export default function RegisterPage() {
             </Link>
           </p>
         </div>
+        </form>
+        {/* <div className="flex justify-center mt-8">
+          <p className="text-[1rem] font-light">
+            Already have and account?{' '}
+            <Link href={'/login'} className="font-medium underline text-[#000428] hover:opacity-80">
+              Login here
+            </Link>
+          </p>
+        </div> */}
       </div>
     </div>
   );

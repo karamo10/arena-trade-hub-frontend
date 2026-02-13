@@ -13,7 +13,7 @@ export default function AuthLayout({
           <section className='flex-1'>
           {children}
           </section>
-          <Footer />
+          {/* <Footer /> */}
     </div>
   );
 }

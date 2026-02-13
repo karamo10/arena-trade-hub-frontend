@@ -14,7 +14,6 @@ export default function UserLayout({
       </p> */}
       <Navigation />
       {children}
-      <p>User page Layout</p>
     </section>
   );
 }

@@ -121,7 +121,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
                       First Name
                     </label>
                     <div className="bg-white text-clr-primary p-2 rounded border border-[#e5e7eb] text-sm capitalize cursor-not-allowed mt-1">
-                      {profile?.first_name || 'Not provided'}
+                      {profile?.first_name || ''}
                     </div>
                   </div>
                 </div>
@@ -135,7 +135,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
                       Last Name
                     </label>
                     <div className="bg-white text-clr-primary p-2 rounded border border-[#e5e7eb] text-sm capitalize cursor-not-allowed mt-1">
-                      {profile?.last_name || 'Not provided'}
+                      {profile?.last_name || ''}
                     </div>
                   </div>
                 </div>
@@ -149,7 +149,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
                       Email
                     </label>
                     <div className="bg-white text-clr-primary p-2 rounded border border-[#e5e7eb] text-sm lowercase cursor-not-allowed mt-1 break-words">
-                      {profile?.email || 'Notprovided@gmail.com'}
+                      {profile?.email || ''}
                     </div>
                   </div>
                 </div>
@@ -157,6 +157,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
             </div>
 
             {/* Additional Information (Editable) */}
+            {/* upload profile image */}
             <div className="">
               <div className="bg-gray-50 border border-gray-200 flex items-center p-4 space-x-4">
                 <Image
@@ -202,6 +203,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
               </div>
             </div>
 
+            {/* Add frst_name, last_name */}
             <div className="space-y-4">
               <div className="space-y-3 border border-gray-200 rounded-lg p-4 bg-gray-50 shadow-xs">
                 {/* form header */}
@@ -431,7 +433,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
           </form>
         </div>
 
-        {/* close edit form */}
+        {/* btn close form */}
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
