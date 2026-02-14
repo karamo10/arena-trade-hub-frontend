@@ -194,7 +194,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
                   {upload && (
                     <button
                       onClick={() => setUpload(false)}
-                      className="text-xs text-clr-secondary border border-gray-200 hover:bg-white transition-all duration-200 shadow-xs"
+                      className="text-xs text-clr-secondary py-1 px-3 font-medium rounded border border-gray-200 hover:bg-white transition-all duration-200 shadow-xs cursor-pointer"
                     >
                       Cancel
                     </button>
@@ -406,7 +406,7 @@ export function EditProfile({ onClose }: EditProfileProps) {
             {/* Save changes button */}
             <div className="bg-red-0 pt-6 border-t border-t-gray-200 px-1">
               <button
-                className="inline-flex items-center justify-center gap-2 bg-black w-full text-white text-sm hover:opacity-85 transition-all duration-200 cursor-pointer"
+                className="inline-flex items-center justify-center py-2 rounded gap-2 bg-black w-full text-white text-sm hover:opacity-90 transition-all duration-500 cursor-pointer"
                 type="submit"
               >
                 <svg

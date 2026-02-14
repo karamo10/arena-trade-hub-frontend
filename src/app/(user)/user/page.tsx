@@ -82,7 +82,7 @@ export default function ProfilePage() {
         </div>
         {/* edit profile btn */}
         <div
-          className="bg-black inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg whitespace-nowrap hover:opacity-85 transition-all duration-300 cursor-pointer"
+          className="bg-black inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded whitespace-nowrap hover:opacity-85 transition-all duration-300 cursor-pointer"
           onClick={() => setOPen(true)}
         >
           <svg

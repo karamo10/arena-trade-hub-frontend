@@ -1,21 +1,20 @@
 import React from 'react';
 import Footer from '@/ui/footer/Footer';
-import { ToastContainer } from 'react-toastify';
 // import NavLinks from '@/ui/Header/NavLinks';
+import Breadcrumbs from '@/ui/breadcrumbs/BreadCrumbs';
 
-export default function AuthLayout({
+export default function UserLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
     <div className="flex flex-col min-h-screen">
-      <ToastContainer position="top-right" autoClose={2000} />
-          {/* <NavLinks /> */}
+          <Breadcrumbs />
           <section className='flex-1'>
           {children}
           </section>
-          {/* <Footer /> */}
+          <Footer />
     </div>
   );
 }

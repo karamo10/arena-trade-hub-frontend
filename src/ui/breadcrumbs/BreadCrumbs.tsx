@@ -9,7 +9,8 @@ export default function Breadcrumbs() {
   const segments = pathname.split('/').filter(Boolean);
 
   return (
-    <Container>
+    <section className="w-full bg-gradient-to-l from-[#004e92] to-[#000428]">
+      <Container>
       <nav aria-label="Breadcrumb" className="breadcrumb">
         <ol>
           <li>
@@ -36,5 +37,7 @@ export default function Breadcrumbs() {
         </ol>
       </nav>
     </Container>
+    </section>
+    
   );
 }

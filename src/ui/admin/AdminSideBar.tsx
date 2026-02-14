@@ -1,51 +1,41 @@
 import Link from 'next/link';
 import { logout } from '@/utils/auth';
-import { ArrowRightStartOnRectangleIcon, UserCircleIcon} from '@heroicons/react/16/solid';
-
+import {
+  ArrowRightStartOnRectangleIcon,
+  UserCircleIcon,
+} from '@heroicons/react/16/solid';
+import { TbDashboard } from 'react-icons/tb';
+import { BsDash } from 'react-icons/bs';
+import { MdDashboard } from 'react-icons/md';
+import Image from 'next/image';
 
 export default function AdminSideBar() {
   return (
-    <div className="w-18 sm:w-80 min-h-screen relative rounded flex flex-col items-center">
-      <div className="w-[95%] sm:w-[100%] mt-0 flex flex-col flex-1 items-center justify-center">
-        {/* <Link
-          href={'/admin/addProducts'}
-          className="flex items-center gap-1 py-2 px-2.5 bg-indigo-950 text-white font-normal rounded cursor-pointer"
-        >
-          <PlusCircleIcon className="w-5 h-5" />
-           Add
-        </Link> */}
-        {/* <Link
-          href={'/admin/editProducts'}
-          className="mt-4 flex items-center gap-1 py-2 px-2.5 bg-indigo-950 text-white font-normal rounded cursor-pointer"
-        >
-          <PencilSquareIcon className="w-5 h-5" />
-        </Link> */}
-        {/* <Link
-          href={'/admin/editProducts'}
-          className="mt-4 flex items-center gap-1 py-2 px-2.5 bg-indigo-950 text-white font-normal rounded cursor-pointer"
-        >
-          <TrashIcon className="w-5 h-5" />
-           Del
-        </Link> */}
-        <Link
+    <section className="fixed top-13 bottom-0 left-0 w-40 bg-gradient-to-l from-[#004e92] to-[#000428] px-4 py-4">
+      {/* header title dashboard */}
+       <Link
           href={'/admin'}
-          className="mt-4 flex items-center gap-1 py-2 px-2.5 bg-indigo-950 text-white font-normal rounded cursor-pointer"
+          className="bg-white w-full flex items-center space-x-1 text-[#000428] font-medium py-2 px-3 rounded cursor-pointer"
         >
-          <UserCircleIcon className="w-5 h-5" />
-        </Link>
+          <MdDashboard className="w-5 h-5" />
+          <span>Dashboard</span>
+      </Link>  
+      {/* header title dashboard */}
+
+      {/* three divs */}
+      <div className="w-[100%] h-full flex my-5 flex-col space-y-5">
+        <div className="flex-1 bg-white">
+          <h1>Hello</h1>
+        </div>
+        {/*  */}
+        <div className="flex-2 bg-white">
+          <h1>Hello</h1>
+        </div>
+        {/*  */}
+        <div className="flex-1 bg-white">
+          <h1>Hello</h1>
+        </div>
       </div>
-      <div className="w-[95%] sm:w-[100%] bg-indigo-950/9 flex-2">
-        {/* <h4>Hello</h4> */}
-      </div>
-      <div className="w-[95%] sm:w-[100%] flex flex-1 items-center justify-center overflow-hidden">
-        <button
-          onClick={() => logout()}
-          className="bg-indigo-950 text-white flex items-center gap-1 px-4 py-2 font-normal rounded cursor-pointer"
-        >
-          <ArrowRightStartOnRectangleIcon className="w-6 h-6" />
-          <p className="font-medium text hidden sm:block">Logout</p>
-        </button>
-      </div>
-    </div>
+    </section>
   );
 }

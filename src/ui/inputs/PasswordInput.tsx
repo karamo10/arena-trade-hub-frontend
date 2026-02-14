@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { EyeSlashIcon, EyeIcon } from "@heroicons/react/16/solid";
 
-export default function PasswordInput({ name, value, onchange }: { name: string, value: string, onchange: (e: React.ChangeEvent<HTMLInputElement>) => void }) {
+export default function PasswordInput({ name, value, onchange, disabled }: { name: string, value: string, onchange: (e: React.ChangeEvent<HTMLInputElement>) => void, disabled?: boolean }) {
     const [showPassword, setShowPassword] = useState(false)
     // const [userLogging, setUserLogging] = useState(false);
     
@@ -14,8 +14,9 @@ export default function PasswordInput({ name, value, onchange }: { name: string,
                 name={name}
                 value={value}
                 onChange={onchange}
+                disabled={disabled}
                 placeholder={`${name}`}
-                className="peer w-full border border-slate-400 bg-white/50 focus:border-[#000428] in-focus:ring-[#000428] rounded py-2 px-3 outline-none placeholder:text-sm placeholder:text-slate-800"
+                className="peer w-full border-2 border-slate-500 bg-white/50 focus:border-[#004e92] in-focus:ring-[#004e92] rounded py-2 px-3 outline-none placeholder:capitalize placeholder:text-sm placeholder:text-slate-800 transition-all duration-500"
                 required
             />
             <button

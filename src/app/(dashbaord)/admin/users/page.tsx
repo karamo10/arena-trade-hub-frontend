@@ -29,6 +29,7 @@ export default function UsersPage() {
       const res = await getUsers();
       setUsers(res);
     } catch (err) {
+      console.log('Error fetching users:', err);
       handleAuthError(err);
       console.error(err);
     }

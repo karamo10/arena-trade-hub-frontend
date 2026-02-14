@@ -33,7 +33,7 @@ export default function Navigation() {
       {/* desktop navigation */}
       <div className="hidden lg:block">
         <div className="shadow-xl rounded-xl overflow-hidden ">
-          <div className="bg-secondary flex items-center justify-between p-6">
+          <div className="bg-gradient-to-l from-[#004e92] to-[#000428] flex items-center justify-between p-6">
             <div className="flex items-center space-x-4">
               <Image
                 src={profile?.image || '/images/avatar.gif'}
@@ -59,7 +59,7 @@ export default function Navigation() {
             </div>
           </div>
           {/* Three Navigation */}
-          <nav className="bg-white  flex justify-center space-x-4 flex-wrap p-6">
+          <nav className="bg-white flex justify-center space-x-4 flex-wrap p-6">
             {/* profile page*/}
             <Link
               href={'/user'}
