@@ -8,7 +8,7 @@ import AdminSideBar from '@/ui/admin/AdminSideBar';
 export default function AdminLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  useAuth();
+  useAuth("admin");
 
   return (
     <div>
