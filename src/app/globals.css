@@ -98,6 +98,8 @@ h5 {
   /* text-color */
   --txt-clr-500: #101828;
   --txt-clr-200: #6a7282;
+  --txt-clr-100: #cbd5e1;
+
   /* #6b7280 */
 
   /* border color */
@@ -126,6 +128,14 @@ input:-webkit-autofill:focus {
 /* text-gray-500 */
 .text-clr-secondary {
   color: var(--txt-clr-200);
+}
+
+.text-clr-secondary-100 {
+  color: var(--txt-clr-100);
+}
+
+.text-opacity-80 {
+  opacity: 80%;
 }
 
 /* text-gray-500 */
@@ -184,5 +194,8 @@ submit:disabled {
   .form {
     padding-left: 0;
     padding-right: 0;
+  }
+  .padding {
+    padding: 1px;
   }
 }

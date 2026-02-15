@@ -4,7 +4,7 @@ import { logout } from "@/utils/auth";
 export default function LogoutButton() {
 
     return (
-        <button className="inline-flex items-center justify-center gap-3 py-1 px-3 rounded text-white text-sm hover:bg-white/20 border border-white/30 cursor-pointer transition-all duration-300" onClick={() => logout()}>
+        <button className="inline-flex items-center justify-center gap-3 py-2 px-6 rounded text-white text-sm hover:bg-white/20 border border-white/30 cursor-pointer transition-all duration-300" onClick={() => logout()}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

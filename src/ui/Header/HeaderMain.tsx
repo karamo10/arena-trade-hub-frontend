@@ -140,7 +140,6 @@ export default function HeaderMain() {
                         className="w-9 h-9 rounded-full ring-2 ring-white shadow-sm transition-colors duration-200"
                         />
                        
-                      {/* active icon */}
                       <div className="w-3 h-3 bg-green-500 rounded-full p-1 absolute bottom-0 -right-0.5 border-2 border-white shadow-white ring ring-green-100"></div>
                       </div>
                     <div className="flex flex-col">
