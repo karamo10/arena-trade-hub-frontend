@@ -1,10 +1,12 @@
-import { Product } from '@/types/product-data-type';
+import { Product } from '@/types/product/product';
 import {
   FullProfile,
   BasicProfile,
   ProfileReadOnly,
-} from '@/types/user-profile-type';
-import { User, Register, Login } from '@/types/user-type';
+} from '@/types/user/user.profile';
+import { User } from '@/types/user/user.modal';
+import { Register, Login } from '@/types/user/user.auth';
+import { AdminDashboardStats,  } from '@/types/dashboard/dashboard.stats';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
@@ -65,11 +67,11 @@ export async function login(
   });
 }
 
+// If a search query exists filter, If not fetch everything
 export async function getProducts(q?: string): Promise<Product[]> {
   const url = q ? `/api/products?q=${q}` : `/api/products`;
   return request(url);
 }
-// If a search query exists filter, If not fetch everything
 
 // get products by it category
 export async function getProductsByCategory(
@@ -89,8 +91,7 @@ export async function getProductById(id: number): Promise<Product> {
 }
 
 // add product
-// API always receives auth
-// export async function addProduct(formData: FormData, token: string)
+// api receives auth
 export async function addProduct(
   formData: FormData,
 ): Promise<{ message: string }> {
@@ -138,11 +139,16 @@ export async function deleteProduct(id: number): Promise<{ message: string }> {
 }
 
 // get Users by only Admin
-export async function getUsers(): Promise<User[]> {
-  const res = await fetch(`${API_URL}/api/users`, {
+export async function getUsers(q?: string): Promise<User[]> {
+  const url = q ? `/api/admin/users?q=${q}` : `/api/admin/users`;
+  const res = await fetch(`${API_URL}${url}`, {
     method: 'GET',
     headers: getAuthHeaders(),
   });
+  // const res = await fetch(`${API_URL}/api/admin/users`, {
+  //   method: 'GET',
+  //   headers: getAuthHeaders(),
+  // });
 
   if (!res.ok) {
     const error = new Error('Request failed') as any;
@@ -159,7 +165,7 @@ export async function updateUserRole(
   role: 'user' | 'admin',
 ): Promise<{ message: string }> {
   const token = localStorage.getItem('token');
-  const res = await fetch(`${API_URL}/api/users/${userId}/role`, {
+  const res = await fetch(`${API_URL}/api/admin/users/${userId}/role`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -177,10 +183,27 @@ export async function updateUserRole(
   return res.json();
 }
 
+// total stats for dashboard
+export async function getDashboardStats(): Promise<AdminDashboardStats> {
+  const res = await fetch(`${API_URL}/api/admin/dashboard/stats`, {
+    method: 'GET',
+    headers: getAuthHeaders(),
+  });
+
+  if (!res.ok) {
+    const error = new Error('Request fail') as any;
+    error.status = res.status;
+    throw error;
+  }
+
+  const data = await res.json();
+  return data.data; // Assuming the API response has a structure like { data: AdminDashboardStats }
+}
+
 
 // getFullProfile by the User
 export async function getFullProfile(): Promise<FullProfile> {
-  const res = await fetch(`${API_URL}/api/profile`, {
+  const res = await fetch(`${API_URL}/api/user/profile`, {
     method: 'GET',
     headers: getAuthHeaders(),
   });
@@ -196,7 +219,7 @@ export async function getFullProfile(): Promise<FullProfile> {
 
 // getBsicProfile
 export async function getBasicProfile(): Promise<BasicProfile> {
-  const res = await fetch(`${API_URL}/api/profile/basic`, {
+  const res = await fetch(`${API_URL}/api/user/profile/basic`, {
     method: 'GET',
     headers: getAuthHeaders(),
   });
@@ -212,7 +235,7 @@ export async function getBasicProfile(): Promise<BasicProfile> {
 
 // getReadOnlyProfile
 export async function getReadOnlyProfile(): Promise<ProfileReadOnly> {
-  const res = await fetch(`${API_URL}/api/profile/readonly`, {
+  const res = await fetch(`${API_URL}/api/user/profile/readonly`, {
     method: 'GET',
     headers: getAuthHeaders(),
   });
@@ -230,7 +253,7 @@ export async function getReadOnlyProfile(): Promise<ProfileReadOnly> {
 export async function updateProfile(
   formData: FormData,
 ): Promise<{ message: string }> {
-  const res = await fetch(`${API_URL}/api/profile/update`, {
+  const res = await fetch(`${API_URL}/api/user/profile/update`, {
     method: 'PATCH',
     headers: getAuthHeaders(),
     body: formData,

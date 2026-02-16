@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import LogoutButton from '../buttons/LogoutButton';
+import LogoutButton from '../../buttons/LogoutButton';
 
 export default function AdminSideBar({
   isOpen,

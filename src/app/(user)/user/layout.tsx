@@ -1,19 +1,24 @@
-"use client";
+'use client';
 
 import useAuth from '@/hooks/useAuth';
-import Navigation from '@/ui/users/Navigations';
+import UserProfileNavigation from '@/ui/user/UserProfileNavigation/UserProfileNavigation';
 
 export default function UserLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  useAuth("user");
+  useAuth('user');
   return (
-    <section className="bg-red-00 loyouts">
-      {/* <p className="warn text-center text-xs my-1">
-        ⚠️ This page is under development
-      </p> */}
-      <Navigation />
+    <section className="loyouts">
+      <UserProfileNavigation />
       {children}
     </section>
   );
+}
+
+
+{
+  /* <p className="warn text-center text-xs my-1">
+        ⚠️ This page is under development
+     </p> 
+*/
 }

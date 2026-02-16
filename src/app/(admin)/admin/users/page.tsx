@@ -6,13 +6,15 @@
 
 import { useEffect, useState } from 'react';
 import { getUsers, updateUserRole } from '@/services/api';
-import { User } from '@/types/user-type';
+import { User } from '@/types/user/user.modal';
 import { toast } from 'react-toastify';
 import handleAuthError from '@/lib/handleAuthError';
 import UsersTable from '@/ui/admin/UsersTable/UsersTable';
-import Card from '@/ui/admin/Card/Card';
+import UserSearchInput from '@/ui/inputs/UserSearchInput';
+import UsersCard from '@/ui/admin/UsersCard/UsersCard';
 
 export default function UsersPage() {
+  const [search, setSearch] = useState('');
   // const users = await getUsers();
   // We can't get users like this cuz we need to make the component server with async whic causes error
   const [users, setUsers] = useState<User[]>([]);
@@ -49,8 +51,6 @@ export default function UsersPage() {
       return;
     }
 
-    // console.log('targetUser:', targetUser);
-
     const newRole = targetUser.role === 'admin' ? 'user' : 'admin';
     try {
       const res = await updateUserRole(targetUser.id, newRole);
@@ -75,8 +75,11 @@ export default function UsersPage() {
             Manage users and their account permissions
           </p>
         </div>
-        <Card />
-        <UsersTable />
+        <UsersCard />
+        <div className="p-14 space-y-8 bg-white rounded-2xl border border-[#e2e8f0] padding">
+         <UserSearchInput value={search} onChange={setSearch} />
+        <UsersTable searchQuery={search} />
+        </div>
       </div>
     </section>
   );

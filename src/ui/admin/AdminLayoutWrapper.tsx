@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import AdminHeader from './AdminHeader';
-import AdminSideBar from './AdminSideBar';
+import AdminDashboardHeader from './AdminDashboardHeader/AdminDashboardHeader';
+import AdminDashboardSideBar from './AdminDashboardSideBar/AdminDashboardSideBar';
 
 export default function AdminLayoutWrapper({
   children,
@@ -14,9 +14,9 @@ export default function AdminLayoutWrapper({
   };
 
   return (
-    <div className="min-h-screen bg-[#fff] text-[#101828]">
-      <AdminSideBar isOpen={isOpen} toggleSidebar={toggleSidebar} />
-      <AdminHeader toggleSidebar={toggleSidebar} />
+    <div className="min-h-screen background-100">
+      <AdminDashboardSideBar isOpen={isOpen} toggleSidebar={toggleSidebar} />
+      <AdminDashboardHeader toggleSidebar={toggleSidebar} />
       <main className="pt-16 lg:ml-64 p-6">{children}</main>
     </div>
   );

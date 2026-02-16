@@ -1,6 +1,5 @@
 import React from 'react';
 import Footer from '@/ui/footer/Footer';
-// import NavLinks from '@/ui/Header/NavLinks';
 import Breadcrumbs from '@/ui/breadcrumbs/BreadCrumbs';
 
 export default function UserLayout({

@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@tailwind utilities;
 
 h1 {
   color: #150e56;
@@ -92,6 +93,7 @@ h5 {
   --background: 0 0% 100%;
   /* bg-clr */
   --bg-clr-primary: #ffffff;
+  --bg-clr-primary-100: #f1f5f9;
   --bg-clr-secondary-400: #004e92;
   /* --bg-clr-secondary-500: #000428; */
 
@@ -103,7 +105,7 @@ h5 {
   /* #6b7280 */
 
   /* border color */
-  --border-clr: #e5e7eb;
+  --border-100: #e2e8f0;
 }
 
 /* Override autofill styles */
@@ -115,6 +117,10 @@ input:-webkit-autofill:focus {
 
 .background {
   background-color: var(--background);
+}
+
+.background-100 {
+  background-color: var(--bg-clr-primary-100);
 }
 
 .bg-secondary {
@@ -138,7 +144,11 @@ input:-webkit-autofill:focus {
   opacity: 80%;
 }
 
-/* text-gray-500 */
+/* Borders */
+/* .border-100 {
+  border-color: var(--color-border-100);
+} */
+
 .border-xl {
   color: var(--txt-clr-100);
 }
@@ -161,7 +171,9 @@ input:-webkit-autofill:focus {
 .breadcrumb li::after {
   content: '/';
   margin-left: 0.5rem;
-  opacity: 0.6;
+  font-weight: 500;
+  color: var(--border-clr);
+  /* opacity: 0.8; */
 }
 
 .breadcrumb li:last-child::after {

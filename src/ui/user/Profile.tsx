@@ -2,7 +2,7 @@
 
 import handleAuthError from '@/lib/handleAuthError';
 import { getFullProfile, updateProfile } from '@/services/api';
-import { FullProfile } from '@/types/user-profile-type';
+import { FullProfile } from '@/types/user/user.profile';
 import { PlusCircleIcon } from '@heroicons/react/20/solid';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';

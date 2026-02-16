@@ -2,9 +2,9 @@
 
 import handleAuthError from '@/lib/handleAuthError';
 import { getReadOnlyProfile } from '@/services/api';
-import { ProfileReadOnly } from '@/types/user-profile-type';
+import { ProfileReadOnly } from '@/types/user/user.profile';
 import { useEffect, useState } from 'react';
-import { EditProfile } from '@/ui/users/EditProfile';
+import { EditProfile } from '@/ui/user/EditProfile/EditProfile';
 import { useLockBodyScroll } from '@/hooks/useLockBodyScroll';
 
 export default function ProfilePage() {
@@ -174,6 +174,7 @@ export default function ProfilePage() {
           </div>
         </form>
       </div>
+      {/* edit profile */}
       {open && <EditProfile onClose={() => setOPen(false)} />}
     </div>
   );

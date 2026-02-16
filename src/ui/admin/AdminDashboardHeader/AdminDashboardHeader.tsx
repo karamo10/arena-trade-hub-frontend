@@ -1,11 +1,11 @@
 'use client';
 
-import { User } from "@/types/user-type";
+import { User } from "@/types/user/user.modal";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
 
-export default function AdminHeader({
+export default function AdminDashboardHeader({
   toggleSidebar,
 }: {
   toggleSidebar: () => void;

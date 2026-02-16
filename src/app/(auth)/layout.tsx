@@ -1,7 +1,5 @@
 import React from 'react';
-import Footer from '@/ui/footer/Footer';
 import { ToastContainer } from 'react-toastify';
-// import NavLinks from '@/ui/Header/NavLinks';
 
 export default function AuthLayout({
   children,
@@ -11,11 +9,9 @@ export default function AuthLayout({
   return (
     <div className="flex flex-col min-h-screen">
       <ToastContainer position="top-right" autoClose={2000} />
-          {/* <NavLinks /> */}
           <section className='flex-1'>
           {children}
           </section>
-          {/* <Footer /> */}
     </div>
   );
 }

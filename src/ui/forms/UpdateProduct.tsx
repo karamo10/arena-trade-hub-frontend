@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from 'react';
 import { updateProduct } from '@/services/api';
-import { Product } from '@/types/product-data-type';
+import { Product } from '@/types/product/product';
 import { toast } from 'react-toastify';
 import Image from 'next/image';
 import handleAuthError from '@/lib/handleAuthError';

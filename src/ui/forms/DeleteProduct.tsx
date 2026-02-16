@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { getProducts, deleteProduct } from '@/services/api';
-import { Product } from '@/types/product-data-type';
+import { Product } from '@/types/product/product';
 import DeleteProductCard from '../productCard/DeleteProductCard';
 import { toast } from 'react-toastify';
 import handleAuthError from '@/lib/handleAuthError';

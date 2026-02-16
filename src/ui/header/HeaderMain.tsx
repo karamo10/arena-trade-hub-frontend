@@ -3,7 +3,7 @@
 import Container from '../layout/Container';
 import Link from 'next/link';
 import Image from 'next/image';
-import { User } from '@/types/user-type';
+import { User } from "@/types/user/user.modal";
 import { useEffect, useState } from 'react';
 // import { logout } from '@/utils/auth';
 

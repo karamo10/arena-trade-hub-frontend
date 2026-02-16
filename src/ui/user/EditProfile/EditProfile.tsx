@@ -1,15 +1,15 @@
-import React, { FormEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getFullProfile, updateProfile } from '@/services/api';
-import { FullProfile } from '@/types/user-profile-type';
+import { FullProfile } from '@/types/user/user.profile';
 import handleAuthError from '@/lib/handleAuthError';
 import Image from 'next/image';
 import { toast } from 'react-toastify';
 
-interface EditProfileProps {
-  onClose: () => void;
-}
+// interface EditProfileProps {
+//   onClose: () => void;
+// }
 
-export function EditProfile({ onClose }: EditProfileProps) {
+export function EditProfile({ onClose }: {onClose: () => void}) {
   const [profile, setProfile] = useState<FullProfile | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [visible, setVisible] = useState<boolean>(true);

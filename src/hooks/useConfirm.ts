@@ -1,6 +1,6 @@
 "use client";
 
-import { ConfirmOptions } from "@/types/confirm-option-type";
+import { ConfirmOptions } from "@/types/confirm/confirm.option";
 import { useState } from "react";
 
 export default function useConfirm() {

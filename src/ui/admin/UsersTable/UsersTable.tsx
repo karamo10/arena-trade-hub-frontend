@@ -1,15 +1,21 @@
+'use client';
+
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import { User } from '@/types/user-type';
+import { User } from '@/types/user/user.modal';
 import { getUsers } from '@/services/api';
 import handleAuthError from '@/lib/handleAuthError';
+// import ProductSearchInput from '@/ui/inputs/SearchInput';
 
-export default function UsersTable() {
+// props: { searchParams?: Promise<{ q?: string }> }
+export default function UsersTable({ searchQuery }: { searchQuery?: string }) {
+  // const searchParams = await props.searchParams;
+  // const users = await getUsers(searchParams?.q)
   const [users, setUsers] = useState<User[]>([]);
 
   async function fetchUsers() {
     try {
-      const res = await getUsers();
+      const res = await getUsers(searchQuery);
       setUsers(res);
     } catch (err) {
       console.log('Error:', err);
@@ -19,33 +25,36 @@ export default function UsersTable() {
 
   useEffect(() => {
     fetchUsers();
-  }, []);
+  }, [searchQuery]);
 
   return (
-    <table className="bg-amber-0 w-[90%] mx-auto rounded-lg">
-      <thead className="bg-blue-200/50">
-        <tr className="border border-gray-700">
-          <th className="text-left uppercase text-xs px-4 py-3 font-medium">
+    <table className="w-full rounded-lg overflow-hidden">
+      <thead className="bg-[#f8fafc] rounded-lg border border-[#e2e8f0]">
+        <tr className="">
+          <th className="text-left uppercase text-xs px-4 py-6 font-medium">
             Name
           </th>
-          <th className="text-left uppercase text-xs px-4 py-3 font-medium">
+          <th className="text-left uppercase text-xs px-4 py-6 font-medium">
             Email
           </th>
-          <th className="text-left uppercase text-xs px-4 py-3 font-medium">
+          <th className="text-left uppercase text-xs px-4 py-6 font-medium">
             Role
           </th>
-          <th className="text-left uppercase text-xs px-4 py-3 font-medium">
+          <th className="text-left uppercase text-xs px-4 py-6 font-medium">
             Status
           </th>
-          <th className="text-left uppercase text-xs px-4 py-3 font-medium">
+          <th className="text-left uppercase text-xs px-4 py-6 font-medium">
             Action
           </th>
         </tr>
       </thead>
-      <tbody className="bg-blue-500/75 rounded-lg">
+      <tbody className="rounded-lg border border-[#e2e8f0]">
         {users.map((user) => (
-          <tr key={user.id} className="border border-gray-700">
-            <td className="text-left px-4 py-3">
+          <tr
+            key={user.id}
+            className="rounded-lg hover:bg-[#f8fafc] border border-[#e2e8f0]"
+          >
+            <td className="text-left px-4 py-6">
               <div className="flex items-center space-x-2">
                 <Image
                   src={user?.image ?? '/images/avatar.gif'}
@@ -54,17 +63,19 @@ export default function UsersTable() {
                   height={100}
                   className="object-cover w-7 h-7 rounded-full"
                 />
-                <span className="uppercase text-sm font-medium">
+                <span className="uppercase text-sm text-gray-800 font-medium">
                   {user.first_name}
                 </span>
               </div>
             </td>
-            <td className="text-left text-sm px-4 py-3 font-medium lowercase">
+            <td className="text-left text-sm text-clr-secondary px-4 py-3 font-medium lowercase">
               <span>{user.email}</span>
             </td>
 
             <td className="text-left text-sm px-4 py-3 font-medium">
-              <div className="inline-flex items-center gap-1 capitalize px-2 py-0.5 bg-blue-700/50 rounded">
+              <div
+                className={`inline-flex items-center gap-1 capitalize px-2 py-0.5 rounded ${user.role === 'admin' ? 'bg-[#dbeafe] text-[#2143b0]' : 'bg-[#f1f5f9] text-clr-secondary'}`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -84,7 +95,7 @@ export default function UsersTable() {
             </td>
 
             <td className="text-left text-sm capitalize px-4 py-3 font-medium">
-              <span className="text-green-500 bg-[#14532d7a] px-2 py-0.5 rounded text-sm">
+              <span className="bg-[#dcfce7] text-[#166534] px-2 py-0.5 rounded text-sm">
                 active
               </span>
             </td>

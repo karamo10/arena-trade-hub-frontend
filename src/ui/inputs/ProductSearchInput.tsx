@@ -25,7 +25,7 @@ export default function ProductSearchInput() {
       placeholder="Search product..."
       defaultValue={searchParams.get('q') || ''}
       onChange={(e) => handleSearch(e.target.value)}
-      className="px-3 py-2 rounded-lg border border-gray-400 focus:border-gray-900 outline-none placeholder:text-xs lg:placeholder:text-base w-[70%] lg:w-[35%]"
+      className="px-3 py-2 rounded-lg border border-[#e2e8f0] focus:border-gray-900 outline-none placeholder:text-xs lg:placeholder:text-base w-[70%] lg:w-[35%]"
     />
   );
 }

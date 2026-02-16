@@ -1,4 +1,3 @@
-// User Profile Types
 export type FullProfile = {
     id: number;
     first_name: string;

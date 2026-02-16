@@ -1,15 +1,15 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { getBasicProfile } from '@/services/api';
-import { BasicProfile } from '@/types/user-profile-type';
+import { BasicProfile } from '@/types/user/user.profile';
 import Image from 'next/image';
 import Link from 'next/link';
-import LogoutButton from '../buttons/LogoutButton';
+import LogoutButton from '../../buttons/LogoutButton';
 import handleAuthError from '@/lib/handleAuthError';
 import { logout } from '@/utils/auth';
 import { useLockBodyScroll } from '@/hooks/useLockBodyScroll';
 
-export default function Navigation() {
+export default function UserProfileNavigation() {
   const [profile, setProfile] = useState<BasicProfile | null>(null);
   const [block, setBlock] = useState(false);
 

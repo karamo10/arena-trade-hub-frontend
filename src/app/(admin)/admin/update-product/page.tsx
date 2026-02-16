@@ -1,6 +1,6 @@
 import { getProducts } from "@/services/api";
 import UpdateProductCard from "@/ui/productCard/UpdateProductCard";
-import ProductSearchInput from "@/ui/inputs/SearchInput";
+import ProductSearchInput from "@/ui/inputs/ProductSearchInput";
 
 type Props = {
     searchParams?: Promise<{ q?: string; }>
