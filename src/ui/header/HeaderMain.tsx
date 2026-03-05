@@ -24,7 +24,7 @@ export default function HeaderMain() {
   // const user: User | null = storedUser ? JSON.parse(storedUser) : null;
 
   return (
-    <div className="w-full bg-white py-3 lg:py-4 border-b border-b-[#e5e7eb]">
+    <div className="w-full bg-red-00 px-3 lg:px-0 py-3 lg:py-4 border-b border-b-[#e5e7eb]">
       <Container>
         <div className="flex items-center justify-between">
           {/* logo*/}
@@ -38,7 +38,7 @@ export default function HeaderMain() {
             />
           </Link>
           {/* search button: max-w-2xl*/}
-          <div className="flex-1 bg-amber-00 mx-4 lg:mx-20">
+          <div className="flex-1 bg-amber-00 mx-4 lg:mx-20 hidden lg:block">
             <button
               className="group flex items-center gap-3 w-full bg-gray-50 hover:bg-gray-100 border border-gray-200 hover:border-[#004e92] rounded-lg px-3 py-2 transition-all duration-200 min-w-[200px] md:min-w-60"
               aria-label="Open search (Ctrl+K)"
