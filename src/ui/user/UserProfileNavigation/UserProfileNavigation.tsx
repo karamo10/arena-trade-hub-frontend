@@ -55,7 +55,7 @@ export default function UserProfileNavigation() {
                 <span className="text-white/80 text-sm">Active</span>
               </div>
               <LogoutButton />
-               {/* <button onClick={() =>logout()}>logout</button> */}
+              {/* <button onClick={() =>logout()}>logout</button> */}
             </div>
           </div>
           {/* Three Navigation */}
@@ -63,16 +63,16 @@ export default function UserProfileNavigation() {
             {/* profile page*/}
             <Link
               href={'/user'}
-              className="flex items-center px-4 py-3 space-x-3 border border-gray-200 rounded-lg hover:border-[#004e92] transition-all duration-300 group"
+              className="flex items-center px-4 py-3 space-x-3 border border-[#e2e8f0] rounded-lg hover:border-[#004e92] transition-all duration-300 group"
             >
-              <div className="bg-gray-100 p-1 rounded-lg group-hover:bg-[#004e92] transition-all duration-300">
+              <div className="bg-[#f1f5f9] p-1 rounded-lg group-hover:bg-[#004e92] transition-all duration-500">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  className="size-6 text-gray-600 group-hover:text-white transition-all duration-300"
+                  className="size-6 text-gray-600 group-hover:text-white"
                 >
                   <path
                     stroke-linecap="round"
@@ -94,9 +94,9 @@ export default function UserProfileNavigation() {
             {/* orders page*/}
             <Link
               href={'/user/orders'}
-              className="flex items-center px-4 py-3 space-x-3 border border-gray-200 rounded-lg hover:border-[#004e92] transition-all duration-300 group"
+              className="flex items-center px-4 py-3 space-x-3 border border-[#e2e8f0] rounded-lg hover:border-[#004e92] transition-all duration-300 group"
             >
-              <div className="bg-gray-100 p-1 rounded-lg group-hover:bg-[#004e92] transition-all duration-300">
+              <div className="bg-[#f1f5f9] p-1 rounded-lg group-hover:bg-[#004e92] transition-all duration-300">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -125,9 +125,9 @@ export default function UserProfileNavigation() {
             {/* wishlists page*/}
             <Link
               href={'/wishlist'}
-              className="flex items-center px-4 py-3 space-x-3 border border-gray-200 rounded-lg hover:border-[#004e92] transition-all duration-300 group"
+              className="flex items-center px-4 py-3 space-x-3 border border-[#e2e8f0] rounded-lg hover:border-[#004e92] transition-all duration-300 group"
             >
-              <div className="bg-gray-100 p-1 rounded-lg group-hover:bg-[#004e92] transition-all duration-300">
+              <div className="bg-[#f1f5f9] p-1 rounded-lg group-hover:bg-[#004e92] transition-all duration-300">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -170,9 +170,6 @@ export default function UserProfileNavigation() {
             />
             <div>
               <h3 className="font-semibold uppercase">{profile?.first_name}</h3>
-              <p className="text-sm text-clr-secondary capitalize">
-                User dashboard
-              </p>
             </div>
           </div>
           {/* click */}
@@ -218,7 +215,7 @@ export default function UserProfileNavigation() {
       {/* mobile navigation */}
       {block && (
         <div className="lg:hidden">
-          <div className="bg-purple-0 shadow-xl rounded-xl overflow-hidden">
+          <div className="shadow-xl rounded-xl overflow-hidden">
             <div className="bg-[#004e92] flex items-center justify-between p-6">
               <div className="flex items-center space-x-4">
                 <Image
@@ -245,17 +242,17 @@ export default function UserProfileNavigation() {
               {/* profile page*/}
               <Link
                 href={'/user'}
-                className="flex items-center justify-between px-4 py-3 border border-gray-200 rounded-lg hover:border-[#004e92] transition-all duration-300 group"
+                className="flex items-center justify-between px-4 py-3 border border-[#e2e8f0] rounded-lg hover:border-[#004e92] transition-all duration-500 group"
               >
                 <div className="flex items-center space-x-3">
-                  <div className="bg-gray-100 p-1 rounded-lg group-hover:bg-[#004e92] transition-all duration-300">
+                  <div className="bg-[#f1f5f9] p-1 rounded-lg group-hover:bg-[#004e92] transition-all duration-500">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke-width="1.5"
                       stroke="currentColor"
-                      className="size-5 text-gray-600 group-hover:text-white transition-all duration-300"
+                      className="size-5 text-gray-600 group-hover:text-white transition-all duration-500"
                     >
                       <path
                         stroke-linecap="round"
@@ -280,7 +277,7 @@ export default function UserProfileNavigation() {
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  className="size-4 text-[#004e92] transition-all duration-300"
+                  className="size-4 text-[#004e92] transition-all duration-500"
                 >
                   <path
                     stroke-linecap="round"
@@ -292,17 +289,17 @@ export default function UserProfileNavigation() {
               {/* orders page*/}
               <Link
                 href={'/user/orders'}
-                className="flex items-center justify-between px-4 py-3 space-x-3 border border-gray-200 rounded-lg hover:border-[#004e92] transition-all duration-300 group"
+                className="flex items-center justify-between px-4 py-3 space-x-3 border border-[#e2e8f0] rounded-lg hover:border-[#004e92] transition-all duration-500 group"
               >
                 <div className="flex items-center space-x-3">
-                  <div className="bg-gray-100 p-1 rounded-lg group-hover:bg-[#004e92] transition-all duration-300">
+                  <div className="bg-[#f1f5f9] p-1 rounded-lg group-hover:bg-[#004e92] transition-all duration-300">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke-width="1.5"
                       stroke="currentColor"
-                      className="size-5 text-gray-600 group-hover:text-white transition-all duration-300"
+                      className="size-5 text-gray-600 group-hover:text-white transition-all duration-500"
                     >
                       <path
                         stroke-linecap="round"
@@ -339,17 +336,17 @@ export default function UserProfileNavigation() {
               {/* wishlist page*/}
               <Link
                 href={'/wishlist'}
-                className="flex items-center justify-between px-4 py-3 space-x-3 border border-gray-200 rounded-lg hover:border-[#004e92] transition-all duration-300 group"
+                className="flex items-center justify-between px-4 py-3 space-x-3 border border-[#e2e8f0] rounded-lg hover:border-[#004e92] transition-all duration-500 group"
               >
                 <div className="flex items-center space-x-3">
-                  <div className="bg-gray-100 p-1 rounded-lg group-hover:bg-[#004e92] transition-all duration-300">
+                  <div className="bg-[#f1f5f9] p-1 rounded-lg group-hover:bg-[#004e92] transition-all duration-500">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke-width="1.5"
                       stroke="currentColor"
-                      className="size-5 text-gray-600 group-hover:text-white transition-all duration-300"
+                      className="size-5 text-gray-600 group-hover:text-white transition-all duration-500"
                     >
                       <path
                         stroke-linecap="round"
@@ -374,7 +371,7 @@ export default function UserProfileNavigation() {
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  className="size-4 text-[#004e92] transition-all duration-300"
+                  className="size-4 text-[#004e92] transition-all duration-500"
                 >
                   <path
                     stroke-linecap="round"
@@ -384,9 +381,12 @@ export default function UserProfileNavigation() {
                 </svg>
               </Link>
             </nav>
-            {/* sign out */}
-            <div className=" p-3 border-t border-t-gray-200">
-              <button className="w-full inline-flex items-center justify-start gap-3 text-[#e7000b] text-sm hover:bg-[#e7000c0c] transition-all duration-300 p-7">
+            {/* sign out btn */}
+            <div className="bg-white p-3 border-t border-t-[#e2e8f0]">
+              <button
+                className="inline-flex items-center justify-center gap-3 py-2 px-6 text-red-500 text-sm font-medium cursor-pointer"
+                onClick={() => logout()}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -398,7 +398,6 @@ export default function UserProfileNavigation() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9"
-                    onClick={() => logout()}
                   />
                 </svg>
                 Sign Out
