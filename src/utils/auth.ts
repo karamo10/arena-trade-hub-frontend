@@ -1,6 +1,6 @@
 'use client';
 
-export function logout(redirect = '/login') {
+export function logout(redirect = '/') {
   localStorage.removeItem('token');
   localStorage.removeItem('user');
 
