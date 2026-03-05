@@ -162,7 +162,7 @@ input:-webkit-autofill:focus {
   gap: 0.5rem;
   list-style: none;
   font-size: 0.9rem;
-  color: var(--border-clr);
+  color: #ffffff;
   padding-block: 0.5rem;
   padding-inline-start: 2.5rem;
   /* background: #c3b2b2; */
