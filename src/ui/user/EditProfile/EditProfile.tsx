@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 //   onClose: () => void;
 // }
 
-export function EditProfile({ onClose }: {onClose: () => void}) {
+export function EditProfile({ onClose }: { onClose: () => void }) {
   const [profile, setProfile] = useState<FullProfile | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [visible, setVisible] = useState<boolean>(true);
@@ -74,10 +74,10 @@ export function EditProfile({ onClose }: {onClose: () => void}) {
     <div className="fixed inset-0 z-40">
       <div className="absolute inset-0 bg-black/50" onClick={handleClose} />
       <div
-        className={`absolute right-0 top-0 h-full w-full max-w-[300px] sm:max-w-[500px] bg-white z-50 transform transition-transform duration-300 ease-[cubic-bezier(0.4,0,1,1)] overflow-y-auto scroll-auto ${visible ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`absolute right-0 top-0 h-full w-full max-w-[300px] sm:max-w-[500px] bg-[#f1f5f9] z-50 transform transition-transform duration-300 ease-[cubic-bezier(0.4,0,1,1)] overflow-y-auto scroll-auto ${visible ? 'translate-x-0' : 'translate-x-full'}`}
       >
         {/* header */}
-        <div className="flex flex-col gap-1.5 p-4">
+        <div className="flex flex-col gap-1.5 p-4 bg-white border border-[#e2e8f0]">
           <h2 className="flex items-center space-x-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +95,7 @@ export function EditProfile({ onClose }: {onClose: () => void}) {
             </svg>
             <span className="text-sm font-semibold">Edit Profile</span>
           </h2>
-          <p className="text-sm text-clr-secondary font-normal break-words">
+          <p className="text-sm text-clr-secondary font-normal break-words capitalize">
             Update your personal information.
           </p>
         </div>
@@ -105,10 +105,10 @@ export function EditProfile({ onClose }: {onClose: () => void}) {
           <form className="space-y-8" onSubmit={handleSave}>
             {/* Account (Read-Only) */}
             <div className="space-y-4">
-              <div className="space-y-3 border border-gray-200 rounded-lg p-4 bg-gray-50 shadow-xs">
+              <div className="space-y-3 bg-white border border-[#e2e8f0] rounded-lg p-4 shadow">
                 {/* form header */}
                 <h3 className="text-clr-primary text-sm font-medium flex items-center">
-                  <span className="w-2 h-2 bg-gray-400 rounded-full mr-2"></span>
+                  <span className="w-2 h-2 bg-gray-900 rounded-full mr-2"></span>
                   Account (Read-Only)
                 </h3>
                 {/* first name */}
@@ -120,7 +120,7 @@ export function EditProfile({ onClose }: {onClose: () => void}) {
                     >
                       First Name
                     </label>
-                    <div className="bg-white text-clr-primary p-2 rounded border border-[#e5e7eb] text-sm capitalize cursor-not-allowed mt-1">
+                    <div className="bg-[#f8fafc] text-clr-primary p-2 rounded border border-[#e2e8f0] text-sm capitalize cursor-not-allowed mt-1">
                       {profile?.first_name || ''}
                     </div>
                   </div>
@@ -134,7 +134,7 @@ export function EditProfile({ onClose }: {onClose: () => void}) {
                     >
                       Last Name
                     </label>
-                    <div className="bg-white text-clr-primary p-2 rounded border border-[#e5e7eb] text-sm capitalize cursor-not-allowed mt-1">
+                    <div className="bg-[#f1f5f9] text-clr-primary p-2 rounded border border-[#e2e8f0] text-sm capitalize cursor-not-allowed mt-1">
                       {profile?.last_name || ''}
                     </div>
                   </div>
@@ -148,7 +148,7 @@ export function EditProfile({ onClose }: {onClose: () => void}) {
                     >
                       Email
                     </label>
-                    <div className="bg-white text-clr-primary p-2 rounded border border-[#e5e7eb] text-sm lowercase cursor-not-allowed mt-1 break-words">
+                    <div className="bg-[#f1f5f9] text-clr-primary p-2 rounded border border-[#e2e8f0] text-sm lowercase cursor-not-allowed mt-1 break-words">
                       {profile?.email || ''}
                     </div>
                   </div>
@@ -159,7 +159,7 @@ export function EditProfile({ onClose }: {onClose: () => void}) {
             {/* Additional Information (Editable) */}
             {/* upload profile image */}
             <div className="">
-              <div className="bg-gray-50 border border-gray-200 flex items-center p-4 space-x-4">
+              <div className="bg-white border border-[#e2e8f0] flex items-center p-4 space-x-4">
                 <Image
                   src={profile?.image || '/images/avatar.gif'}
                   alt="profile image"
@@ -171,7 +171,7 @@ export function EditProfile({ onClose }: {onClose: () => void}) {
                   {!upload && (
                     <button
                       onClick={() => setUpload(true)}
-                      className="text-sm text-clr-primary font-normal px-3 py-2 border border-gray-200 shadow-xs hover:bg-white transition-all duration-200 cursor-pointer"
+                      className="text-sm text-clr-primary font-normal px-3 py-2 border border-[#e2e8f0] shadow-xs cursor-pointer hover:bg-[#f8fafc] transition-all duration-500"
                     >
                       Upload new picture
                     </button>
@@ -186,7 +186,7 @@ export function EditProfile({ onClose }: {onClose: () => void}) {
                         onChange={handleImgChange}
                       />
                       <span className="text-xs text-clr-secondary">
-                        PG, GIF or PNG. Max size of 800K
+                        JPEG, GIF or PNG. Max size 2MB
                       </span>
                     </fieldset>
                   )}
@@ -194,7 +194,7 @@ export function EditProfile({ onClose }: {onClose: () => void}) {
                   {upload && (
                     <button
                       onClick={() => setUpload(false)}
-                      className="text-xs text-clr-secondary py-1 px-3 font-medium rounded border border-gray-200 hover:bg-white transition-all duration-200 shadow-xs cursor-pointer"
+                      className="text-xs text-clr-secondary py-1 px-3 font-medium rounded border border-[#e2e8f0] shadow-xs cursor-pointer hover:bg-[#f8fafc] transition-all duration-500"
                     >
                       Cancel
                     </button>
@@ -205,7 +205,7 @@ export function EditProfile({ onClose }: {onClose: () => void}) {
 
             {/* Add frst_name, last_name */}
             <div className="space-y-4">
-              <div className="space-y-3 border border-gray-200 rounded-lg p-4 bg-gray-50 shadow-xs">
+              <div className="space-y-3 bg-white border border-[#e2e8f0] rounded-lg p-4 shadow-xs">
                 {/* form header */}
                 <h3 className="text-sm font-medium flex items-center break-words">
                   <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
@@ -239,7 +239,7 @@ export function EditProfile({ onClose }: {onClose: () => void}) {
                       name="firstName"
                       value={profile?.first_name || ''}
                       placeholder="Enter first name"
-                      className="w-full px-3 py-2 text-sm placeholder:text-sm placeholder:text-gray-500 border border-gray-200 rounded shadow-xs capitalize bg-transparent outline-none focus:border-gray-900"
+                      className="w-full px-3 py-2 text-sm placeholder:text-sm placeholder:text-gray-500 border border-[#e2e8f0] rounded shadow-xs capitalize bg-transparent outline-none focus:border-gray-900 hover:bg-[#f8fafc] transition-all duration-500"
                       autoComplete="new-firstName"
                       onChange={(e) =>
                         setProfile((prev) =>
@@ -280,7 +280,7 @@ export function EditProfile({ onClose }: {onClose: () => void}) {
                       name="lastName"
                       value={profile?.last_name || ''}
                       placeholder="Enter last name"
-                      className="w-full px-3 py-2 text-sm placeholder:text-sm placeholder:text-gray-500 border border-gray-200 rounded shadow-xs capitalize bg-transparent outline-none focus:border-gray-900"
+                      className="w-full px-3 py-2 text-sm placeholder:text-sm placeholder:text-gray-500 border border-[#e2e8f0] rounded shadow-xs capitalize bg-transparent outline-none focus:border-gray-900 hover:bg-[#f8fafc] transition-all duration-500"
                       autoComplete="new-lastName"
                       onChange={(e) =>
                         setProfile((prev) =>
@@ -297,7 +297,7 @@ export function EditProfile({ onClose }: {onClose: () => void}) {
             </div>
 
             {/* Add Address */}
-            <div className="space-y-2 border border-gray-200 rounded-lg bg-gray-50 shadow-xs">
+            <div className="space-y-2 bg-white border border-[#e2e8f0] rounded-lg shadow-xs">
               {/* header */}
               <div className="flex flex-col gap-1.5 px-4 pt-4 font-semibold">
                 <h2 className="text-sm font-medium flex items-center space-x-1">
@@ -338,7 +338,7 @@ export function EditProfile({ onClose }: {onClose: () => void}) {
                       name="address"
                       value={profile?.address || ''}
                       placeholder="e.g., Brikama, Farato, Banjul "
-                      className="w-full px-3 py-2 text-sm placeholder:text-sm border placeholder:text-gray-500 border-gray-200 outline-none focus:border-gray-900 rounded shadow-xs bg-transparent mt-1"
+                      className="w-full px-3 py-2 text-sm placeholder:text-sm placeholder:text-gray-500 border border-[#e2e8f0] outline-none focus:border-gray-900 rounded shadow-xs bg-transparent mt-1 hover:bg-[#f8fafc] transition-all duration-500"
                       autoComplete="new-address"
                       onChange={(e) =>
                         setProfile((prev) =>
@@ -362,7 +362,7 @@ export function EditProfile({ onClose }: {onClose: () => void}) {
                       name="phoneNumber"
                       value={profile?.phone_number || ''}
                       placeholder="Enter phone number"
-                      className="w-full px-3 py-2 text-sm placeholder:text-sm border placeholder:text-gray-500 border-gray-200 outline-none focus:border-gray-900 rounded shadow-xs bg-transparent mt-1"
+                      className="w-full px-3 py-2 text-sm placeholder:text-sm placeholder:text-gray-500 border border-[#e2e8f0] outline-none focus:border-gray-900 rounded shadow-xs bg-transparent mt-1 hover:bg-[#f8fafc] transition-all duration-500"
                       autoComplete="new-phoneNumber"
                       onChange={(e) =>
                         setProfile((prev) =>
@@ -388,7 +388,7 @@ export function EditProfile({ onClose }: {onClose: () => void}) {
                       name="streetAddress"
                       value={profile?.street_address || ''}
                       placeholder="Enter your street address (street name)"
-                      className="w-full px-3 py-2 text-sm placeholder:text-sm placeholder:text-gray-500 border border-gray-200 outline-none focus:border-gray-900 rounded shadow-xs bg-transparent break-words mt-1"
+                      className="w-full px-3 py-2 text-sm placeholder:text-sm placeholder:text-gray-500 border border-[#e2e8f0] outline-none focus:border-gray-900 rounded shadow-xs bg-transparent break-words mt-1 hover:bg-[#f8fafc] transition-all duration-500"
                       autoComplete="new-streetAddress"
                       onChange={(e) =>
                         setProfile((prev) =>
@@ -404,7 +404,7 @@ export function EditProfile({ onClose }: {onClose: () => void}) {
             </div>
 
             {/* Save changes button */}
-            <div className="bg-red-0 pt-6 border-t border-t-gray-200 px-1">
+            <div className="bg-white pt-6 border-t border-t-[#e2e8f0] px-1">
               <button
                 className="inline-flex items-center justify-center py-2 rounded gap-2 bg-black w-full text-white text-sm hover:opacity-90 transition-all duration-500 cursor-pointer"
                 type="submit"
