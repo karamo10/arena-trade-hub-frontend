@@ -6,7 +6,7 @@ export default function TopBar() {
       <Container>
         <p className="flex items-center justify-center gap-1 text-xs text-white py-1 capitalize font-medium">
           Free delivery on orders over $50 and coded by!
-          <a href="https://github.com/karamo10" className="underline">K4RA</a>
+          <a href="https://github.com/karamo10" target='_blank' className="underline">K4RA</a>
         </p>
       </Container>
     </div>
