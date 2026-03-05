@@ -1,6 +1,7 @@
 import React from 'react';
-import Footer from '@/ui/footer/Footer';
+import { ToastContainer } from 'react-toastify';
 import Breadcrumbs from '@/ui/breadcrumbs/BreadCrumbs';
+import Footer from '@/ui/footer/Footer';
 
 export default function UserLayout({
   children,
@@ -9,6 +10,7 @@ export default function UserLayout({
 }) {
   return (
     <div className="flex flex-col min-h-screen">
+      <ToastContainer position="top-right" autoClose={2000} />
           <Breadcrumbs />
           <section className='flex-1'>
           {children}
