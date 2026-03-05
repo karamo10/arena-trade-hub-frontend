@@ -27,9 +27,9 @@ export default function ProfilePage() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-6 bg-white my-7 px-5 py-10 shadow-xl rounded-xl">
+    <div className="flex flex-col gap-6 my-7 px-5 py-10 bg-[#ffffff] border border-[#e2e8f0] rounded-2xl">
       {/* first child */}
-      <div className="flex items-center justify-evenly bg-purple-00 p-6 shadow-lg rounded-lg">
+      <div className="flex items-center justify-evenly p-6 bg-[#f1f5f9] border border-[#e2e8f0] rounded">
         {/* member since */}
         <div className="flex items-center space-x-3 hidden">
           <div className="p-2 bg-blue-100 rounded-lg">
@@ -107,8 +107,8 @@ export default function ProfilePage() {
       </div>
 
       {/* form div*/}
-      <div className="shadow-lg rounded-md">
-        <form className="bg-red-00 rounded-lg shadow-lg">
+      <div className="border border-[#e2e8f0] rounded">
+        <form className="rounded">
           <div className="p-6 flex flex-col space-y-1.5">
             <div className="font-semibold flex items-center space-x-2">
               <svg
@@ -139,7 +139,7 @@ export default function ProfilePage() {
                 >
                   First Name
                 </label>
-                <p className="text-clr-primary text-sm font-medium bg-gray-50 px-3 py-2 rounded-md cursor-not-allowed capitalize break-words">
+                <p className="text-clr-primary text-sm font-medium px-3 py-2 cursor-not-allowed capitalize break-words bg-[#f8fafc] border border-[#e2e8f0] rounded">
                   {profile?.first_name || 'loading...'}
                 </p>
                 <p className="text-xs text-gray-400 mt-1">Read-only</p>
@@ -152,7 +152,7 @@ export default function ProfilePage() {
                 >
                   Last Name
                 </label>
-                <p className="text-clr-primary text-sm font-medium  bg-gray-50 px-3 py-2 rounded-md cursor-not-allowed capitalize break-words">
+                <p className="text-clr-primary text-sm font-medium px-3 py-2 cursor-not-allowed capitalize break-words bg-[#f8fafc] border border-[#e2e8f0] rounded">
                   {profile?.last_name || 'Not provided'}
                 </p>
                 <p className="text-xs text-gray-400 mt-1">Read-only</p>
@@ -165,7 +165,7 @@ export default function ProfilePage() {
                 >
                   Email
                 </label>
-                <p className="text-clr-primary text-sm font-medium bg-gray-50 px-3 py-2 rounded-md cursor-not-allowed lowercase">
+                <p className="text-clr-primary text-sm font-medium px-3 py-2 cursor-not-allowed lowercase bg-[#f8fafc] border border-[#e2e8f0] rounded">
                   {profile?.email}
                 </p>
                 <p className="text-xs text-gray-400 mt-1">Read-only</p>
