@@ -9,7 +9,7 @@ export default function UserLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-[#f1f5f9]">
       <ToastContainer position="top-right" autoClose={2000} />
           <Breadcrumbs />
           <section className='flex-1'>
