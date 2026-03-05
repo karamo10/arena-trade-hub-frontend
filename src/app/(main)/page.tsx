@@ -10,7 +10,7 @@ import { MayyounaiseSkeleton } from "@/ui/skeleton/Skeleton";
 
 export default async function Home() {
   return (
-    <main>
+    <main className="bg">
       <Hero />
       <Suspense fallback={<RiceSkeleton/>}>
         <RiceCategoreis />
