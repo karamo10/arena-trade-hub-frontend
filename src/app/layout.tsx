@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${jost.variable} antialiased bg-[#fff] min-h-screen flex flex-col`}
+        className={`${jost.variable} antialiased bg-[#ffffff] min-h-screen flex flex-col`}
       >
         <section className="flex-1">
           {children}
